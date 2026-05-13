@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium vinyl stickers by Mage Customs. Custom sizes available with fast production and professional die-cutting.">
+    <meta property="og:title" content="Mage Customs - Premium Stickers">
+    <meta property="og:description" content="High-quality die-cut vinyl stickers with professional lamination. Custom sizes and bulk pricing available.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://magecustoms.com">
+    <meta name="twitter:card" content="summary">
+    <title>Mage Customs - Premium Stickers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --bg: #050505;
+            --card: #0a0a0a;
+            --border: #1a1a1a;
+            --text: #e5e5e5;
+            --muted: #737373;
+            --accent-gold: #FFD400;
+            --accent-orange: #FF6B00;
+            --accent-pink: #FF0080;
+            --green: #00ff88;
+            --messenger-blue: #0084FF;
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 20px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --border-radius: 16px;
+            --border-radius-sm: 8px;
+            --border-radius-lg: 20px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* Focus styles for accessibility */
+        button:focus,
+        input:focus,
+        a:focus {
+            outline: 2px solid var(--accent-gold);
+            outline-offset: 2px;
+        }
+
+        /* Skip link for screen readers */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--accent-gold);
+            color: #000;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: var(--border-radius-sm);
+            z-index: 1000;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* Screen reader only text */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: var(--spacing-lg) var(--spacing-md);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xl);
+        }
+
+        /* --- HEADER --- */
+        header { text-align: center; margin-bottom: var(--spacing-xs); }
+
+        .brand-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            line-height: 0.9;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange), var(--accent-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .brand-sub {
+            font-size: 0.85rem;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* --- TOGGLE --- */
+        .toggle-wrap {
+            display: flex;
+            background: #111;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 4px;
+            position: relative;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            padding: 10px 0;
+            cursor: pointer;
+            border-radius: 100px;
+            transition: color var(--transition);
+            z-index: 2;
+        }
+
+        .toggle-btn.active { color: #000; }
+
+        .slider-bg {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: calc(33.33% - 4px);
+            height: calc(100% - 8px);
+            background: var(--accent-gold);
+            border-radius: 100px;
+            transition: transform var(--transition);
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(255, 212, 0, 0.4);
+        }
+
+        .slide-right .slider-bg { transform: translateX(100%); }
+        .slide-custom .slider-bg { transform: translateX(200%); }
+
+        /* --- CARDS --- */
+        .price-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s, border-color 0.3s;
+        }
+
+        .price-card:active { transform: scale(0.98); }
+
+        .order-section {
+            display: none;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-md);
+        }
+
+        .upload-field,
+        .payment-field {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+            margin-top: var(--spacing-md);
+        }
+
+        .upload-field input[type='file'] {
+            background: #111;
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius-sm);
+            padding: 12px 14px;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+            margin-top: var(--spacing-sm);
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: border-color var(--transition), background var(--transition);
+        }
+
+        .payment-option input {
+            margin: 0;
+        }
+
+        .payment-option:hover,
+        .payment-option input:focus-visible + span {
+            border-color: var(--accent-gold);
+            background: rgba(255, 212, 0, 0.1);
+        }
+
+        .order-summary {
+            margin-top: var(--spacing-md);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        .order-summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--spacing-sm);
+            padding: 12px 14px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--border-radius-sm);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .order-summary-row span:first-child {
+            color: var(--muted);
+        }
+
+        .order-summary-row span:last-child {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .order-button {
+            margin-top: var(--spacing-lg);
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            background: var(--accent-gold);
+            color: #000;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, opacity var(--transition);
+        }
+
+        .order-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .order-note,
+        .field-error,
+        .order-feedback {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .field-error {
+            color: #ff7a7a;
+        }
+
+        .order-feedback.success {
+            color: var(--green);
+        }
+
+        .order-feedback.error {
+            color: #ff7a7a;
+        }
+
+        .default-order-cta {
+            margin-top: var(--spacing-md);
+            padding: var(--spacing-lg);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            background: #0b0b0b;
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .default-order-cta p {
+            margin: 0;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        .default-order-cta .order-button {
+            width: auto;
+            align-self: flex-start;
+        }
+
+        .price-card.popular { border-color: rgba(255, 212, 0, 0.3); }
+        .price-card.popular::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(255, 212, 0, 0.05), transparent 60%);
+            pointer-events: none;
+        }
+
+        .price-card.best { border-color: rgba(255, 0, 128, 0.3); }
+        .price-card.best::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at bottom left, rgba(255, 0, 128, 0.05), transparent 60%);
+            pointer-events: none;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .qty-group h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            line-height: 1;
+            color: var(--text);
+        }
+
+        .qty-group span {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-popular { background: var(--accent-gold); color: #000; }
+        .badge-best { background: var(--accent-pink); color: #fff; }
+
+        .price-display {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .main-price {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--text);
+        }
+
+        .sub-price { color: var(--muted); font-size: 0.9rem; }
+
+        /* Expandable Breakdown */
+        .breakdown {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .price-card.expanded .breakdown {
+            max-height: 150px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .stat-item label {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--muted);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .stat-item value {
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .savings-value { color: var(--green); }
+
+        /* --- DETAILS & TERMS SECTION --- */
+        .details-section {
+            margin-top: var(--spacing-xs);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .detail-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+        }
+
+        .detail-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            margin-bottom: var(--spacing-md);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .detail-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .detail-list li {
+            font-size: 0.9rem;
+            color: #aaa;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+        }
+
+        .detail-list li::before {
+            content: "✦";
+            color: var(--accent-orange);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* --- FOOTER --- */
+        .footer-notes {
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-lg);
+            background: #0d0d0d;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border);
+        }
+
+        .contact-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            margin-top: var(--spacing-lg);
+            background: var(--text);
+            color: var(--bg);
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: var(--border-radius-sm);
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .contact-btn:active { transform: scale(0.98); }
+
+        /* --- MESSENGER CHATBOX --- */
+        .messenger-chatbox {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+        }
+
+        .messenger-bubble {
+            width: 60px;
+            height: 60px;
+            background: var(--messenger-blue);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+        }
+
+        .messenger-bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 132, 255, 0.4);
+        }
+
+        .messenger-bubble svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        .messenger-tooltip {
+            background: white;
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .messenger-chatbox:hover .messenger-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <main id="main-content">
+        <div class="container">
+            <header>
+                <h1 class="brand-title">MAGE CUSTOMS</h1>
+                <p class="brand-sub">Premium Vinyl Stickers</p>
+            </header>
+
+            <section class="pricing-section" aria-labelledby="pricing-heading">
+                <h2 id="pricing-heading" class="sr-only">Sticker Pricing Options</h2>
+
+                <div class="toggle-wrap" role="tablist" aria-label="Size selection">
+                    <div class="slider-bg"></div>
+                    <button class="toggle-btn active" aria-selected="true" role="tab" aria-controls="price-list">2×2</button>
+                    <button class="toggle-btn" aria-selected="false" role="tab" aria-controls="price-list">3×3</button>
+                    <button class="toggle-btn" aria-selected="false" role="tab" aria-controls="custom-inputs">Custom</button>
+                </div>
+
+                <form id="custom-inputs" style="display: none; margin-top: var(--spacing-sm); background: var(--card); border: 1px solid var(--border); border-radius: var(--border-radius); padding: var(--spacing-md);" class="custom-form" aria-labelledby="custom-heading">
+                    <h3 id="custom-heading" class="detail-title">Custom Size Calculator</h3>
+                    <div style="display: flex; gap: var(--spacing-md); align-items: center; flex-wrap: wrap;">
+                        <label for="width" style="color: var(--text);">Width (inches):
+                            <input type="number" id="width" min="1" max="10" value="2" style="background: #111; border: 1px solid var(--border); color: var(--text); padding: var(--spacing-xs); border-radius: var(--border-radius-sm);">
+                        </label>
+                        <label for="height" style="color: var(--text);">Height (inches):
+                            <input type="number" id="height" min="1" max="10" value="2" style="background: #111; border: 1px solid var(--border); color: var(--text); padding: var(--spacing-xs); border-radius: var(--border-radius-sm);">
+                        </label>
+                        <label for="qty" style="color: var(--text);">Quantity:
+                            <input type="number" id="qty" min="1" value="20" style="background: #111; border: 1px solid var(--border); color: var(--text); padding: var(--spacing-xs); border-radius: var(--border-radius-sm);">
+                        </label>
+                        <button type="button" id="calculate-btn" style="background: var(--accent-gold); color: #000; border: none; padding: 10px 20px; border-radius: var(--border-radius-sm); cursor: pointer; font-weight: 700;">Calculate Price</button>
+                    </div>
+                    <div class="upload-field">
+                        <label for="file-upload" style="color: var(--text); font-weight: 600;">Upload your design (PNG only, HD image required)</label>
+                        <input type="file" id="file-upload" accept="image/png" aria-describedby="file-note file-error">
+                        <span id="file-note" class="order-note">We only accept high-resolution PNG with transparent background.</span>
+                        <span id="file-error" class="field-error" aria-live="polite"></span>
+                    </div>
+                    <div class="payment-field">
+                        <label style="color: var(--text); font-weight: 600;">Payment method</label>
+                        <div class="payment-options" role="radiogroup" aria-labelledby="payment-label">
+                            <label class="payment-option">
+                                <input type="radio" name="payment-method" value="gcash">
+                                <span>GCash</span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment-method" value="bank-transfer">
+                                <span>Bank Transfer</span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment-method" value="paypal">
+                                <span>PayPal</span>
+                            </label>
+                        </div>
+                        <span id="payment-error" class="field-error" aria-live="polite"></span>
+                    </div>
+                </form>
+
+                <div id="price-list" role="region" aria-live="polite" aria-label="Price calculations"></div>
+                <div id="default-order-cta" class="default-order-cta" style="display:none;">
+                    <p>Choose a standard preset price, then tap Order to proceed. For artwork upload and payment, use the Custom tab.</p>
+                    <button type="button" id="default-order-btn" class="order-button">Order this size</button>
+                </div>
+                <section id="order-section" class="order-section" aria-labelledby="order-heading">
+                    <h3 id="order-heading" class="sr-only">Order summary and checkout</h3>
+                    <div class="order-summary">
+                        <div class="order-summary-row">
+                            <span>Size</span>
+                            <span id="order-size">-</span>
+                        </div>
+                        <div class="order-summary-row">
+                            <span>Quantity</span>
+                            <span id="order-qty">-</span>
+                        </div>
+                        <div class="order-summary-row">
+                            <span>Total Price</span>
+                            <span id="order-price">-</span>
+                        </div>
+                        <div class="order-summary-row">
+                            <span>Payment</span>
+                            <span id="order-payment">-</span>
+                        </div>
+                        <div id="order-summary-text" class="order-note">Upload your PNG and select a payment method to enable checkout.</div>
+                    </div>
+                    <button type="button" id="order-btn" class="order-button" disabled>Place Order</button>
+                    <div id="order-feedback" class="order-feedback"></div>
+                </section>
+            </section>
+
+            <section class="details-section" aria-labelledby="details-heading">
+                <h2 id="details-heading" class="sr-only">Product Details</h2>
+
+                <article class="detail-card">
+                    <h3 class="detail-title">Product Specifications</h3>
+                    <ul class="detail-list">
+                        <li>Professionally Die-cut with Phototop Lamination</li>
+                        <li>High Quality: Does not fade easily (Rain or Shine). Lasts over a year.</li>
+                        <li>Versatile Use: Suitable for indoors, outdoors, bikes, scooters, motorcycles, etc.</li>
+                    </ul>
+                </article>
+
+                <article class="detail-card">
+                    <h3 class="detail-title">Application & Order Tips</h3>
+                    <ul class="detail-list">
+                        <li>Application Tip: Clean the surface first. Ensure no dirt, residue, or wax spray before applying.</li>
+                        <li>Production Time: Please allow up to 3-5 days for design arrangement, printing, and processing.</li>
+                        <li>File Requirement: Provide your own HD Image-Logo. PNG file with transparent background only or Send me a google drive link.</li>
+                        <li>Full payment required before printing.</li>
+                    </ul>
+                </article>
+            </section>
+
+            <footer class="footer-notes">
+                <p style="color: var(--muted); font-size: 0.85rem; text-align: center;">For inquiries and orders, click the chat button or call us.</p>
+                <a href="tel:09954441281" class="contact-btn">Call: 0995 444 1281</a>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Messenger Chatbox Widget -->
+    <aside class="messenger-chatbox" aria-label="Contact options">
+        <div class="messenger-tooltip">Chat with us on Messenger</div>
+        <a href="https://m.me/hayfacepalm" target="_blank" class="messenger-bubble" aria-label="Open Messenger chat">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.145 2 11.258c0 2.91 1.453 5.503 3.735 7.153V22l3.435-1.885c.895.248 1.844.383 2.83.383 5.523 0 10-4.145 10-9.258S17.523 2 12 2zm1.07 12.564l-2.583-2.756-5.043 2.756 5.548-5.894 2.657 2.756 4.969-2.756-5.548 5.894z"/>
+            </svg>
+        </a>
+    </aside>
+
+    <script>
+        // === PRICING DATA (3 TIERS) ===
+        const PRICE_DATA = {
+            '2x2': [
+                { qty: 20, price: 440, unit: 22, save: 0, badge: null },
+                { qty: 50, price: 900, unit: 18, save: 200, badge: 'popular' },
+                { qty: 100, price: 1400, unit: 14, save: 800, badge: 'best' }
+            ],
+            '3x3': [
+                { qty: 20, price: 700, unit: 35, save: 0, badge: null },
+                { qty: 50, price: 1400, unit: 28, save: 350, badge: 'popular' },
+                { qty: 100, price: 2200, unit: 22, save: 1300, badge: 'best' }
+            ]
+        };
+
+        // Cache DOM elements for better performance
+        const elements = {
+            listEl: document.getElementById('price-list'),
+            toggleWrap: document.querySelector('.toggle-wrap'),
+            customInputs: document.getElementById('custom-inputs'),
+            widthInput: document.getElementById('width'),
+            heightInput: document.getElementById('height'),
+            qtyInput: document.getElementById('qty'),
+            calculateBtn: document.getElementById('calculate-btn'),
+            fileInput: document.getElementById('file-upload'),
+            fileError: document.getElementById('file-error'),
+            paymentRadios: document.querySelectorAll('input[name="payment-method"]'),
+            paymentError: document.getElementById('payment-error'),
+            orderBtn: document.getElementById('order-btn'),
+            orderSection: document.getElementById('order-section'),
+            orderFeedback: document.getElementById('order-feedback'),
+            defaultOrderCta: document.getElementById('default-order-cta'),
+            defaultOrderBtn: document.getElementById('default-order-btn'),
+            orderSummaryText: document.getElementById('order-summary-text'),
+            toggleBtns: document.querySelectorAll('.toggle-btn')
+        };
+
+        let currentSize = '2x2';
+        let expandedIndex = null;
+        let customData = null;
+
+        // Initialize event listeners
+        function initEventListeners() {
+            // Toggle buttons
+            elements.toggleBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const size = btn.textContent.toLowerCase().replace('×', 'x');
+                    switchSize(size, btn);
+                });
+            });
+
+            // Calculate button
+            elements.calculateBtn.addEventListener('click', calculateCustom);
+
+            // File upload validation
+            elements.fileInput.addEventListener('change', handleFileUpload);
+
+            // Payment selection
+            elements.paymentRadios.forEach(radio => {
+                radio.addEventListener('change', handlePaymentChange);
+            });
+
+            // Order button
+            elements.orderBtn.addEventListener('click', submitOrder);
+            elements.defaultOrderBtn.addEventListener('click', handleDefaultOrder);
+
+            // Keyboard navigation for toggle
+            elements.toggleWrap.addEventListener('keydown', (e) => {
+                const buttons = Array.from(elements.toggleBtns);
+                const currentIndex = buttons.findIndex(btn => btn.classList.contains('active'));
+
+                if (e.key === 'ArrowRight' && currentIndex < buttons.length - 1) {
+                    e.preventDefault();
+                    buttons[currentIndex + 1].click();
+                } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                    e.preventDefault();
+                    buttons[currentIndex - 1].click();
+                }
+            });
+        }
+
+        function render() {
+            const data = currentSize === 'custom' ? (customData ? [customData] : []) : PRICE_DATA[currentSize];
+            elements.listEl.innerHTML = '';
+            orderState.hasPrice = data.length > 0;
+            updateOrderSummary(data[0]);
+            const isCustom = currentSize === 'custom';
+            elements.defaultOrderCta.style.display = (!isCustom && orderState.hasPrice) ? 'block' : 'none';
+            updateOrderSection(isCustom && orderState.hasPrice);
+
+            data.forEach((item, index) => {
+                const card = document.createElement('div');
+                let classes = 'price-card';
+                if (item.badge === 'popular') classes += ' popular';
+                if (item.badge === 'best') classes += ' best';
+                if (expandedIndex === index) classes += ' expanded';
+
+                card.className = classes;
+                card.setAttribute('role', 'button');
+                card.setAttribute('tabindex', '0');
+                card.setAttribute('aria-expanded', expandedIndex === index);
+                card.addEventListener('click', () => toggleExpand(index));
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleExpand(index);
+                    }
+                });
+
+                let badgeHtml = '';
+                if (item.badge) {
+                    const badgeClass = item.badge === 'popular' ? 'badge-popular' : 'badge-best';
+                    const badgeText = item.badge === 'popular' ? 'Most Popular' : 'Best Value';
+                    badgeHtml = `<span class="badge ${badgeClass}">${badgeText}</span>`;
+                }
+
+                let saveHtml = '';
+                if (item.save > 0) {
+                    saveHtml = `<span class="sub-price">Save ₱${item.save.toLocaleString()}</span>`;
+                }
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="qty-group">
+                            <h2>${item.qty}</h2>
+                            <span>Pieces</span>
+                        </div>
+                        ${badgeHtml}
+                    </div>
+                    <div class="price-display">
+                        <span class="main-price">₱${item.price.toLocaleString()}</span>
+                        ${saveHtml}
+                    </div>
+                    <div class="breakdown">
+                        <div class="stat-grid">
+                            <div class="stat-item">
+                                <label>Unit Price</label>
+                                <value>₱${item.unit}</value>
+                            </div>
+                            <div class="stat-item">
+                                <label>Total Savings</label>
+                                <value class="savings-value">₱${item.save.toLocaleString()}</value>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                elements.listEl.appendChild(card);
+            });
+        }
+
+        function toggleExpand(index) {
+            expandedIndex = (expandedIndex === index) ? null : index;
+            render();
+        }
+
+        function calculatePrice(w, h, qty) {
+            try {
+                if (w <= 0 || h <= 0 || qty <= 0) {
+                    throw new Error('Invalid dimensions or quantity');
+                }
+
+                const area = w * h;
+                const scaling = Math.sqrt(area / 4);
+                let unit;
+                if (qty <= 20) {
+                    unit = 22 * scaling;
+                } else if (qty <= 50) {
+                    unit = 18 * scaling;
+                } else {
+                    unit = 14 * scaling;
+                }
+                const total = Math.round(unit * qty);
+                const base_unit = 22 * scaling;
+                const savings = Math.round((base_unit - unit) * qty);
+                return { total, unit: Math.round(unit), savings: Math.max(0, savings) };
+            } catch (error) {
+                console.error('Price calculation error:', error);
+                return { total: 0, unit: 0, savings: 0 };
+            }
+        }
+
+        function calculateCustom() {
+            try {
+                const w = Math.max(1, parseInt(elements.widthInput.value) || 2);
+                const h = Math.max(1, parseInt(elements.heightInput.value) || 2);
+                const qty = Math.max(1, parseInt(elements.qtyInput.value) || 20);
+
+                const { total, unit, savings } = calculatePrice(w, h, qty);
+                customData = {
+                    qty,
+                    price: total,
+                    unit,
+                    save: savings,
+                    badge: null
+                };
+                render();
+            } catch (error) {
+                console.error('Custom calculation error:', error);
+                alert('Error calculating price. Please check your inputs.');
+            }
+        }
+
+        const orderState = {
+            file: null,
+            payment: null,
+            validFile: false,
+            hasPrice: false
+        };
+
+        function handleFileUpload() {
+            const file = elements.fileInput.files[0];
+            elements.fileError.textContent = '';
+            orderState.file = null;
+            orderState.validFile = false;
+            updateOrderButtonState();
+
+            if (!file) {
+                elements.fileError.textContent = 'Please select a PNG file.';
+                return;
+            }
+
+            if (file.type !== 'image/png') {
+                elements.fileError.textContent = 'Only PNG files are accepted.';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const image = new Image();
+                image.onload = function() {
+                    if (image.width < 800 || image.height < 800) {
+                        elements.fileError.textContent = 'Please upload a high-resolution (HD) image of at least 800×800 pixels.';
+                        orderState.validFile = false;
+                    } else {
+                        orderState.file = file;
+                        orderState.validFile = true;
+                        elements.fileError.textContent = '';
+                    }
+                    updateOrderButtonState();
+                };
+                image.onerror = function() {
+                    elements.fileError.textContent = 'Unable to read the image. Please upload a valid PNG file.';
+                    orderState.validFile = false;
+                    updateOrderButtonState();
+                };
+                image.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function handlePaymentChange(event) {
+            orderState.payment = event.target.value;
+            elements.paymentError.textContent = '';
+            updateOrderSummary(currentSize === 'custom' ? customData : PRICE_DATA[currentSize][0]);
+            updateOrderButtonState();
+        }
+
+        function updateOrderSection(visible) {
+            elements.orderSection.style.display = visible ? 'block' : 'none';
+            if (!visible) {
+                elements.orderFeedback.textContent = '';
+                elements.fileError.textContent = '';
+                elements.paymentError.textContent = '';
+                orderState.payment = null;
+                orderState.file = null;
+                orderState.validFile = false;
+            }
+            updateOrderButtonState();
+        }
+
+        function handleDefaultOrder() {
+            elements.orderFeedback.textContent = 'Thanks for choosing a preset size. Please message us with your design and we will confirm your order details.';
+            elements.orderFeedback.className = 'order-feedback success';
+        }
+
+        function updateOrderButtonState() {
+            const canOrder = orderState.hasPrice && orderState.validFile && !!orderState.payment;
+            elements.orderBtn.disabled = !canOrder;
+            elements.orderSummaryText.textContent = canOrder
+                ? `Ready to order. Selected payment: ${orderState.payment.replace('-', ' ').toUpperCase()}.`
+                : 'Upload your PNG and select a payment method to enable checkout.';
+        }
+
+        function updateOrderSummary(item) {
+            const sizeLabel = currentSize === 'custom'
+                ? `${elements.widthInput.value}×${elements.heightInput.value} inches`
+                : currentSize.toUpperCase();
+            const qtyLabel = item ? item.qty : '-';
+            const priceLabel = item ? `₱${item.price.toLocaleString()}` : '-';
+            const paymentLabel = orderState.payment ? orderState.payment.replace('-', ' ').toUpperCase() : '-';
+
+            document.getElementById('order-size').textContent = sizeLabel;
+            document.getElementById('order-qty').textContent = qtyLabel;
+            document.getElementById('order-price').textContent = priceLabel;
+            document.getElementById('order-payment').textContent = paymentLabel;
+        }
+
+        function submitOrder() {
+            if (!orderState.validFile) {
+                elements.fileError.textContent = 'Please upload a valid HD PNG file.';
+                return;
+            }
+            if (!orderState.payment) {
+                elements.paymentError.textContent = 'Please choose a payment method.';
+                return;
+            }
+            elements.orderFeedback.textContent = `Order submitted! We will contact you with instructions for ${orderState.payment.replace('-', ' ')} payment.`;
+            elements.orderFeedback.className = 'order-feedback success';
+            elements.orderBtn.disabled = true;
+        }
+
+        function switchSize(size, btn) {
+            currentSize = size;
+            expandedIndex = null;
+
+            // Update button states
+            elements.toggleBtns.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
+
+            // Handle Custom Inputs
+            if (size === 'custom') {
+                elements.customInputs.style.display = 'block';
+                elements.defaultOrderCta.style.display = 'none';
+                customData = null;
+                render();
+            } else {
+                elements.customInputs.style.display = 'none';
+                elements.defaultOrderCta.style.display = 'block';
+                render();
+            }
+
+            // Handle Slider Animation
+            if (size === '3x3') {
+                elements.toggleWrap.classList.add('slide-right');
+                elements.toggleWrap.classList.remove('slide-custom');
+            } else if (size === 'custom') {
+                elements.toggleWrap.classList.add('slide-custom');
+                elements.toggleWrap.classList.remove('slide-right');
+            } else {
+                elements.toggleWrap.classList.remove('slide-right');
+                elements.toggleWrap.classList.remove('slide-custom');
+            }
+        }
+
+        // Initialize the application
+        initEventListeners();
+        render();
+    </script>
+</body>
+</html>
