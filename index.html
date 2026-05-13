@@ -88,7 +88,7 @@
 
         .container {
             width: 100%;
-            max-width: 420px;
+            max-width: 860px;
             display: flex;
             flex-direction: column;
             gap: var(--spacing-xl);
@@ -551,13 +551,48 @@
         }
 
         #custom-flex-wrapper {
+            display: none;
             gap: var(--spacing-lg);
             align-items: flex-start;
+            justify-content: space-between;
             margin-top: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+
+        .custom-form {
+            flex: 1 1 520px;
+            min-width: 260px;
+            max-width: 640px;
         }
 
         #order-section {
             display: none;
+            flex: 0 0 320px;
+            width: 100%;
+            max-width: 340px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+        }
+
+        .order-summary {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .order-summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--spacing-sm);
+            padding: 14px 12px;
+            border-radius: var(--border-radius-sm);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .order-note {
+            margin-top: 0;
         }
 
         #custom-flex-wrapper[style*="display: flex"] #order-section {
@@ -623,7 +658,7 @@
                                 </label>
                             </div>
                             <span id="payment-error" class="field-error" aria-live="polite"></span>
-                            <button type="button" id="custom-order-btn" style="background: var(--accent-gold); color: #000; border: none; padding: 12px 24px; border-radius: var(--border-radius-sm); cursor: pointer; font-weight: 700; width: 100%; margin-top: var(--spacing-md);">Order Now</button>
+                            <button type="button" id="custom-order-btn" style="background: var(--accent-gold); color: #000; border: none; padding: 12px 24px; border-radius: var(--border-radius-sm); cursor: pointer; font-weight: 700; width: 100%; margin-top: var(--spacing-md);">Review Order</button>
                         </div>
                     </form>
 
@@ -729,6 +764,7 @@
             fileError: document.getElementById('file-error'),
             paymentRadios: document.querySelectorAll('input[name="payment-method"]'),
             paymentError: document.getElementById('payment-error'),
+            customOrderBtn: document.getElementById('custom-order-btn'),
             orderBtn: document.getElementById('order-btn'),
             orderSection: document.getElementById('order-section'),
             orderFeedback: document.getElementById('order-feedback'),
@@ -765,6 +801,7 @@
 
             // Order button
             elements.orderBtn.addEventListener('click', submitOrder);
+            elements.customOrderBtn.addEventListener('click', handleReviewOrder);
             elements.defaultOrderBtn.addEventListener('click', handleDefaultOrder);
 
             // Keyboard navigation for toggle
@@ -789,7 +826,10 @@
             updateOrderSummary(data[0]);
             const isCustom = currentSize === 'custom';
             elements.defaultOrderCta.style.display = (!isCustom && orderState.hasPrice) ? 'block' : 'none';
-            updateOrderSection(isCustom && orderState.hasPrice);
+            elements.listEl.style.display = isCustom ? 'none' : 'block';
+            updateOrderSection(isCustom);
+
+            if (isCustom) return;
 
             data.forEach((item, index) => {
                 const card = document.createElement('div');
@@ -975,6 +1015,17 @@
             alert('Please contact me on Facebook Messenger together with your uploaded design.');
             elements.orderFeedback.textContent = 'Thanks for choosing a preset size. Please message us with your design and we will confirm your order details.';
             elements.orderFeedback.className = 'order-feedback success';
+        }
+
+        function handleReviewOrder() {
+            if (!customData || !orderState.hasPrice) {
+                alert('Please calculate your custom price first, then review your order.');
+                return;
+            }
+            elements.orderSection.style.display = 'block';
+            elements.orderSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            elements.orderFeedback.textContent = 'Review your custom order details, then click Place Order to complete.';
+            elements.orderFeedback.className = 'order-feedback';
         }
 
         function updateOrderButtonState() {
