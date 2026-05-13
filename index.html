@@ -555,6 +555,14 @@
             align-items: flex-start;
             margin-top: var(--spacing-sm);
         }
+
+        #order-section-custom {
+            display: none;
+        }
+
+        #custom-flex-wrapper[style*="display: flex"] #order-section-custom {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -619,36 +627,37 @@
                         </div>
                     </form>
 
-                    <div id="price-list" role="region" aria-live="polite" aria-label="Price calculations" style="flex: 0 1 300px;"></div>
+                    <section id="order-section-custom" class="order-section" style="flex: 0 1 300px;" aria-labelledby="order-heading">
+                        <h3 id="order-heading" class="sr-only">Order summary and checkout</h3>
+                        <div class="order-summary">
+                            <div class="order-summary-row">
+                                <span>Size</span>
+                                <span id="order-size">-</span>
+                            </div>
+                            <div class="order-summary-row">
+                                <span>Quantity</span>
+                                <span id="order-qty">-</span>
+                            </div>
+                            <div class="order-summary-row">
+                                <span>Total Price</span>
+                                <span id="order-price">-</span>
+                            </div>
+                            <div class="order-summary-row">
+                                <span>Payment</span>
+                                <span id="order-payment">-</span>
+                            </div>
+                            <div id="order-summary-text" class="order-note">Upload your PNG and select a payment method to enable checkout.</div>
+                        </div>
+                        <button type="button" id="order-btn" class="order-button" disabled>Place Order</button>
+                        <div id="order-feedback" class="order-feedback"></div>
+                    </section>
                 </div>
+
+                <div id="price-list" role="region" aria-live="polite" aria-label="Price calculations"></div>
                 <div id="default-order-cta" class="default-order-cta" style="display:none;">
                     <p>Choose a standard preset price, then tap Order to proceed. For artwork upload and payment, use the Custom tab.</p>
                     <button type="button" id="default-order-btn" class="order-button">Order this size</button>
                 </div>
-                <section id="order-section" class="order-section" aria-labelledby="order-heading">
-                    <h3 id="order-heading" class="sr-only">Order summary and checkout</h3>
-                    <div class="order-summary">
-                        <div class="order-summary-row">
-                            <span>Size</span>
-                            <span id="order-size">-</span>
-                        </div>
-                        <div class="order-summary-row">
-                            <span>Quantity</span>
-                            <span id="order-qty">-</span>
-                        </div>
-                        <div class="order-summary-row">
-                            <span>Total Price</span>
-                            <span id="order-price">-</span>
-                        </div>
-                        <div class="order-summary-row">
-                            <span>Payment</span>
-                            <span id="order-payment">-</span>
-                        </div>
-                        <div id="order-summary-text" class="order-note">Upload your PNG and select a payment method to enable checkout.</div>
-                    </div>
-                    <button type="button" id="order-btn" class="order-button" disabled>Place Order</button>
-                    <div id="order-feedback" class="order-feedback"></div>
-                </section>
             </section>
 
             <section class="details-section" aria-labelledby="details-heading">
