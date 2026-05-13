@@ -989,6 +989,7 @@
                 elements.paymentError.textContent = 'Please choose a payment method.';
                 return;
             }
+            alert('Please contact me on Facebook Messenger together with your uploaded design.');
             elements.orderFeedback.textContent = `Order submitted! We will contact you with instructions for ${orderState.payment.replace('-', ' ')} payment.`;
             elements.orderFeedback.className = 'order-feedback success';
             elements.orderBtn.disabled = true;
