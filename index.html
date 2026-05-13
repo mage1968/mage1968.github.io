@@ -549,6 +549,12 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        #custom-flex-wrapper {
+            gap: var(--spacing-lg);
+            align-items: flex-start;
+            margin-top: var(--spacing-sm);
+        }
     </style>
 </head>
 <body>
@@ -571,48 +577,50 @@
                     <button class="toggle-btn" aria-selected="false" role="tab" aria-controls="custom-inputs">Custom</button>
                 </div>
 
-                <form id="custom-inputs" style="display: none; margin-top: var(--spacing-sm); background: var(--card); border: 1px solid var(--border); border-radius: var(--border-radius); padding: var(--spacing-md);" class="custom-form" aria-labelledby="custom-heading">
-                    <h3 id="custom-heading" class="detail-title">Custom Size Calculator</h3>
-                    <div style="display: flex; gap: var(--spacing-md); align-items: center; flex-wrap: wrap;">
-                        <label for="width" style="color: var(--text);">Width (inches):
-                            <input type="number" id="width" min="1" max="10" value="2" style="background: #111; border: 1px solid var(--border); color: var(--text); padding: var(--spacing-xs); border-radius: var(--border-radius-sm);">
-                        </label>
-                        <label for="height" style="color: var(--text);">Height (inches):
-                            <input type="number" id="height" min="1" max="10" value="2" style="background: #111; border: 1px solid var(--border); color: var(--text); padding: var(--spacing-xs); border-radius: var(--border-radius-sm);">
-                        </label>
-                        <label for="qty" style="color: var(--text);">Quantity:
-                            <input type="number" id="qty" min="1" value="20" style="background: #111; border: 1px solid var(--border); color: var(--text); padding: var(--spacing-xs); border-radius: var(--border-radius-sm);">
-                        </label>
-                        <button type="button" id="calculate-btn" style="background: var(--accent-gold); color: #000; border: none; padding: 10px 20px; border-radius: var(--border-radius-sm); cursor: pointer; font-weight: 700;">Calculate Price</button>
-                    </div>
-                    <div class="upload-field">
-                        <label for="file-upload" style="color: var(--text); font-weight: 600;">Upload your design (PNG only, HD image required)</label>
-                        <input type="file" id="file-upload" accept="image/png" aria-describedby="file-note file-error">
-                        <span id="file-note" class="order-note">We only accept high-resolution PNG with transparent background.</span>
-                        <span id="file-error" class="field-error" aria-live="polite"></span>
-                    </div>
-                    <div class="payment-field">
-                        <label style="color: var(--text); font-weight: 600;">Payment method</label>
-                        <div class="payment-options" role="radiogroup" aria-labelledby="payment-label">
-                            <label class="payment-option">
-                                <input type="radio" name="payment-method" value="gcash">
-                                <span>GCash</span>
+                <div id="custom-flex-wrapper" style="display: none;">
+                    <form id="custom-inputs" style="flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: var(--border-radius); padding: var(--spacing-md);" class="custom-form" aria-labelledby="custom-heading">
+                        <h3 id="custom-heading" class="detail-title">Custom Size Calculator</h3>
+                        <div style="display: flex; gap: var(--spacing-md); align-items: center; flex-wrap: wrap;">
+                            <label for="width" style="color: var(--text);">Width (inches):
+                                <input type="number" id="width" min="1" max="10" value="2" style="background: #111; border: 1px solid var(--border); color: var(--text); padding: var(--spacing-xs); border-radius: var(--border-radius-sm);">
                             </label>
-                            <label class="payment-option">
-                                <input type="radio" name="payment-method" value="bank-transfer">
-                                <span>Bank Transfer</span>
+                            <label for="height" style="color: var(--text);">Height (inches):
+                                <input type="number" id="height" min="1" max="10" value="2" style="background: #111; border: 1px solid var(--border); color: var(--text); padding: var(--spacing-xs); border-radius: var(--border-radius-sm);">
                             </label>
-                            <label class="payment-option">
-                                <input type="radio" name="payment-method" value="paypal">
-                                <span>PayPal</span>
+                            <label for="qty" style="color: var(--text);">Quantity:
+                                <input type="number" id="qty" min="1" value="20" style="background: #111; border: 1px solid var(--border); color: var(--text); padding: var(--spacing-xs); border-radius: var(--border-radius-sm);">
                             </label>
+                            <button type="button" id="calculate-btn" style="background: var(--accent-gold); color: #000; border: none; padding: 10px 20px; border-radius: var(--border-radius-sm); cursor: pointer; font-weight: 700;">Calculate Price</button>
                         </div>
-                        <span id="payment-error" class="field-error" aria-live="polite"></span>
-                        <button type="button" id="custom-order-btn" style="background: var(--accent-gold); color: #000; border: none; padding: 12px 24px; border-radius: var(--border-radius-sm); cursor: pointer; font-weight: 700; width: 100%; margin-top: var(--spacing-md);">Order Now</button>
-                    </div>
-                </form>
+                        <div class="upload-field">
+                            <label for="file-upload" style="color: var(--text); font-weight: 600;">Upload your design (PNG only, HD image required)</label>
+                            <input type="file" id="file-upload" accept="image/png" aria-describedby="file-note file-error">
+                            <span id="file-note" class="order-note">We only accept high-resolution PNG with transparent background.</span>
+                            <span id="file-error" class="field-error" aria-live="polite"></span>
+                        </div>
+                        <div class="payment-field">
+                            <label style="color: var(--text); font-weight: 600;">Payment method</label>
+                            <div class="payment-options" role="radiogroup" aria-labelledby="payment-label">
+                                <label class="payment-option">
+                                    <input type="radio" name="payment-method" value="gcash">
+                                    <span>GCash</span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment-method" value="bank-transfer">
+                                    <span>Bank Transfer</span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment-method" value="paypal">
+                                    <span>PayPal</span>
+                                </label>
+                            </div>
+                            <span id="payment-error" class="field-error" aria-live="polite"></span>
+                            <button type="button" id="custom-order-btn" style="background: var(--accent-gold); color: #000; border: none; padding: 12px 24px; border-radius: var(--border-radius-sm); cursor: pointer; font-weight: 700; width: 100%; margin-top: var(--spacing-md);">Order Now</button>
+                        </div>
+                    </form>
 
-                <div id="price-list" role="region" aria-live="polite" aria-label="Price calculations"></div>
+                    <div id="price-list" role="region" aria-live="polite" aria-label="Price calculations" style="flex: 0 1 300px;"></div>
+                </div>
                 <div id="default-order-cta" class="default-order-cta" style="display:none;">
                     <p>Choose a standard preset price, then tap Order to proceed. For artwork upload and payment, use the Custom tab.</p>
                     <button type="button" id="default-order-btn" class="order-button">Order this size</button>
@@ -703,6 +711,7 @@
             listEl: document.getElementById('price-list'),
             toggleWrap: document.querySelector('.toggle-wrap'),
             customInputs: document.getElementById('custom-inputs'),
+            customFlexWrapper: document.getElementById('custom-flex-wrapper'),
             widthInput: document.getElementById('width'),
             heightInput: document.getElementById('height'),
             qtyInput: document.getElementById('qty'),
@@ -1010,12 +1019,12 @@
 
             // Handle Custom Inputs
             if (size === 'custom') {
-                elements.customInputs.style.display = 'block';
+                elements.customFlexWrapper.style.display = 'flex';
                 elements.defaultOrderCta.style.display = 'none';
                 customData = null;
                 render();
             } else {
-                elements.customInputs.style.display = 'none';
+                elements.customFlexWrapper.style.display = 'none';
                 elements.defaultOrderCta.style.display = 'block';
                 render();
             }
