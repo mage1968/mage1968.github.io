@@ -1,1110 +1,603 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Premium vinyl stickers by Mage Customs. Custom sizes available with fast production and professional die-cutting.">
-    <meta property="og:title" content="Mage Customs - Premium Stickers">
-    <meta property="og:description" content="High-quality die-cut vinyl stickers with professional lamination. Custom sizes and bulk pricing available.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://magecustoms.com">
-    <meta name="twitter:card" content="summary">
-    <title>Mage Customs - Premium Stickers</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        /* --- CSS STYLES --- */
-        :root {
-            --bg: #050505;
-            --card: #0a0a0a;
-            --border: #1a1a1a;
-            --text: #e5e5e5;
-            --muted: #737373;
-            --accent-gold: #FFD400;
-            --accent-orange: #FF6B00;
-            --accent-pink: #FF0080;
-            --green: #00ff88;
-            --messenger-blue: #0084FF;
-            --spacing-xs: 8px;
-            --spacing-sm: 16px;
-            --spacing-md: 20px;
-            --spacing-lg: 24px;
-            --spacing-xl: 32px;
-            --border-radius: 16px;
-            --border-radius-sm: 8px;
-            --border-radius-lg: 20px;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        /* Focus styles for accessibility */
-        button:focus,
-        input:focus,
-        a:focus {
-            outline: 2px solid var(--accent-gold);
-            outline-offset: 2px;
-        }
-
-        /* Skip link for screen readers */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: var(--accent-gold);
-            color: #000;
-            padding: 8px;
-            text-decoration: none;
-            border-radius: var(--border-radius-sm);
-            z-index: 1000;
-        }
-
-        .skip-link:focus {
-            top: 6px;
-        }
-
-        /* Screen reader only text */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            padding: var(--spacing-lg) var(--spacing-md);
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-        }
-
-        .container {
-            width: 100%;
-            max-width: 860px;
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-xl);
-        }
-
-        /* --- HEADER --- */
-        header { text-align: center; margin-bottom: var(--spacing-xs); }
-
-        .brand-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 4rem;
-            line-height: 0.9;
-            letter-spacing: 2px;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange), var(--accent-pink));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
-
-        .brand-sub {
-            font-size: 0.85rem;
-            color: var(--muted);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-
-        /* --- TOGGLE --- */
-        .toggle-wrap {
-            display: flex;
-            background: #111;
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            padding: 4px;
-            position: relative;
-        }
-
-        .toggle-btn {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: var(--muted);
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            padding: 10px 0;
-            cursor: pointer;
-            border-radius: 100px;
-            transition: color var(--transition);
-            z-index: 2;
-        }
-
-        .toggle-btn.active { color: #000; }
-
-        .slider-bg {
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            width: calc(33.33% - 4px);
-            height: calc(100% - 8px);
-            background: var(--accent-gold);
-            border-radius: 100px;
-            transition: transform var(--transition);
-            z-index: 1;
-            box-shadow: 0 0 20px rgba(255, 212, 0, 0.4);
-        }
-
-        .slide-right .slider-bg { transform: translateX(100%); }
-        .slide-custom .slider-bg { transform: translateX(200%); }
-
-        /* --- CARDS --- */
-        .price-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--border-radius-lg);
-            padding: var(--spacing-lg);
-            margin-bottom: var(--spacing-md);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.2s, border-color 0.3s;
-        }
-
-        .price-card:active { transform: scale(0.98); }
-
-        .order-section {
-            display: none;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--border-radius);
-            padding: var(--spacing-lg);
-            margin-top: var(--spacing-md);
-        }
-
-        .upload-field,
-        .payment-field {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-xs);
-            margin-top: var(--spacing-md);
-        }
-
-        .upload-field input[type='file'] {
-            background: #111;
-            color: var(--text);
-            border: 1px solid var(--border);
-            border-radius: var(--border-radius-sm);
-            padding: 12px 14px;
-        }
-
-        .payment-options {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-xs);
-            margin-top: var(--spacing-sm);
-        }
-
-        .payment-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 14px;
-            border: 1px solid var(--border);
-            border-radius: var(--border-radius-sm);
-            cursor: pointer;
-            transition: border-color var(--transition), background var(--transition);
-        }
-
-        .payment-option input {
-            margin: 0;
-        }
-
-        .payment-option:hover,
-        .payment-option input:focus-visible + span {
-            border-color: var(--accent-gold);
-            background: rgba(255, 212, 0, 0.1);
-        }
-
-        .order-summary {
-            margin-top: var(--spacing-md);
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-sm);
-            font-size: 0.95rem;
-            color: var(--text);
-        }
-
-        .order-summary-row {
-            display: flex;
-            justify-content: space-between;
-            gap: var(--spacing-sm);
-            padding: 12px 14px;
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: var(--border-radius-sm);
-            background: rgba(255,255,255,0.02);
-        }
-
-        .order-summary-row span:first-child {
-            color: var(--muted);
-        }
-
-        .order-summary-row span:last-child {
-            color: var(--text);
-            font-weight: 700;
-        }
-
-        .order-button {
-            margin-top: var(--spacing-lg);
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: var(--border-radius-sm);
-            background: var(--accent-gold);
-            color: #000;
-            font-weight: 700;
-            cursor: pointer;
-            transition: transform 0.2s, opacity var(--transition);
-        }
-
-        .order-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .order-note,
-        .field-error,
-        .order-feedback {
-            font-size: 0.85rem;
-            color: #aaa;
-        }
-
-        .field-error {
-            color: #ff7a7a;
-        }
-
-        .order-feedback.success {
-            color: var(--green);
-        }
-
-        .order-feedback.error {
-            color: #ff7a7a;
-        }
-
-        .default-order-cta {
-            margin-top: var(--spacing-md);
-            padding: var(--spacing-lg);
-            border: 1px solid var(--border);
-            border-radius: var(--border-radius);
-            background: #0b0b0b;
-            color: var(--text);
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-sm);
-        }
-
-        .default-order-cta p {
-            margin: 0;
-            line-height: 1.6;
-            color: var(--muted);
-        }
-
-        .default-order-cta .order-button {
-            width: auto;
-            align-self: flex-start;
-        }
-
-        .price-card.popular { border-color: rgba(255, 212, 0, 0.3); }
-        .price-card.popular::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at top right, rgba(255, 212, 0, 0.05), transparent 60%);
-            pointer-events: none;
-        }
-
-        .price-card.best { border-color: rgba(255, 0, 128, 0.3); }
-        .price-card.best::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at bottom left, rgba(255, 0, 128, 0.05), transparent 60%);
-            pointer-events: none;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-        }
-
-        .qty-group h2 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            line-height: 1;
-            color: var(--text);
-        }
-
-        .qty-group span {
-            font-size: 0.8rem;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .badge {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .badge-popular { background: var(--accent-gold); color: #000; }
-        .badge-best { background: var(--accent-pink); color: #fff; }
-
-        .price-display {
-            display: flex;
-            align-items: baseline;
-            gap: 8px;
-        }
-
-        .main-price {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 3rem;
-            color: var(--text);
-        }
-
-        .sub-price { color: var(--muted); font-size: 0.9rem; }
-
-        /* Expandable Breakdown */
-        .breakdown {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .price-card.expanded .breakdown {
-            max-height: 150px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
-        }
-
-        .stat-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .stat-item label {
-            display: block;
-            font-size: 0.7rem;
-            color: var(--muted);
-            margin-bottom: 4px;
-            text-transform: uppercase;
-        }
-
-        .stat-item value {
-            font-weight: 700;
-            color: var(--text);
-        }
-
-        .savings-value { color: var(--green); }
-
-        /* --- DETAILS & TERMS SECTION --- */
-        .details-section {
-            margin-top: var(--spacing-xs);
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-md);
-        }
-
-        .detail-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--border-radius);
-            padding: var(--spacing-lg);
-        }
-
-        .detail-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.2rem;
-            color: var(--accent-gold);
-            margin-bottom: var(--spacing-md);
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-xs);
-        }
-
-        .detail-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-sm);
-        }
-
-        .detail-list li {
-            font-size: 0.9rem;
-            color: #aaa;
-            line-height: 1.5;
-            display: flex;
-            align-items: flex-start;
-            gap: var(--spacing-sm);
-        }
-
-        .detail-list li::before {
-            content: "✦";
-            color: var(--accent-orange);
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        /* --- FOOTER --- */
-        .footer-notes {
-            margin-top: var(--spacing-lg);
-            padding: var(--spacing-lg);
-            background: #0d0d0d;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--border);
-        }
-
-        .contact-btn {
-            display: block;
-            width: 100%;
-            padding: 18px;
-            margin-top: var(--spacing-lg);
-            background: var(--text);
-            color: var(--bg);
-            text-align: center;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: var(--border-radius-sm);
-            font-size: 1rem;
-            transition: transform 0.2s;
-        }
-
-        .contact-btn:active { transform: scale(0.98); }
-
-        /* --- MESSENGER CHATBOX --- */
-        .messenger-chatbox {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 12px;
-        }
-
-        .messenger-bubble {
-            width: 60px;
-            height: 60px;
-            background: var(--messenger-blue);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-        }
-
-        .messenger-bubble:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 16px rgba(0, 132, 255, 0.4);
-        }
-
-        .messenger-bubble svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-
-        .messenger-tooltip {
-            background: white;
-            color: #333;
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            pointer-events: none;
-            white-space: nowrap;
-        }
-
-        .messenger-chatbox:hover .messenger-tooltip {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        #custom-flex-wrapper {
-            display: none;
-            gap: var(--spacing-lg);
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-top: var(--spacing-sm);
-            flex-wrap: wrap;
-        }
-
-        .custom-form {
-            flex: 1 1 520px;
-            min-width: 260px;
-            max-width: 640px;
-        }
-
-        #order-section {
-            display: none;
-            flex: 0 0 320px;
-            width: 100%;
-            max-width: 340px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--border-radius);
-            padding: var(--spacing-lg);
-        }
-
-        .order-summary {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .order-summary-row {
-            display: flex;
-            justify-content: space-between;
-            gap: var(--spacing-sm);
-            padding: 14px 12px;
-            border-radius: var(--border-radius-sm);
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .order-note {
-            margin-top: 0;
-        }
-
-        #custom-flex-wrapper[style*="display: flex"] #order-section {
-            display: block;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mage Customs prints premium waterproof, UV-resistant custom stickers for brands, bikes, creators, packaging, and small businesses." />
+  <meta name="theme-color" content="#050505" />
+  <title>Mage Customs | Premium Custom Sticker Printing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: #101010;
+      --line: rgba(255, 255, 255, .12);
+      --text: #f8fafc;
+      --muted: #a3a3a3;
+      --brand: #facc15;
+      --brand-2: #f59e0b;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --shadow: 0 24px 80px rgba(0, 0, 0, .45);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --max: 1180px;
+      --nav-height: 78px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-height) + 22px); }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(250, 204, 21, .16), transparent 34rem),
+        radial-gradient(circle at 90% 8%, rgba(245, 158, 11, .14), transparent 30rem),
+        linear-gradient(180deg, #050505 0%, #0a0a0a 45%, #050505 100%);
+      line-height: 1.5;
+    }
+    body.menu-open { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    .container { width: min(calc(100% - 32px), var(--max)); margin: 0 auto; }
+    .eyebrow { color: var(--brand); font-weight: 800; letter-spacing: .16em; text-transform: uppercase; font-size: .78rem; }
+    .section { padding: 92px 0; scroll-margin-top: calc(var(--nav-height) + 24px); }
+    .section-title { font-size: clamp(2rem, 5vw, 3.6rem); line-height: .98; margin: 12px 0 16px; letter-spacing: -.055em; }
+    .section-copy { color: var(--muted); max-width: 680px; font-size: 1.05rem; }
+    .btn {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 13px 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 800;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, color .18s ease;
+      min-height: 48px;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #111; box-shadow: 0 16px 48px rgba(250, 204, 21, .24); }
+    .btn-secondary { background: rgba(255,255,255,.06); border-color: var(--line); color: var(--text); }
+    .btn-block { width: 100%; }
+    .skip-link { position: absolute; left: -999px; top: 12px; background: var(--brand); color: #111; padding: 10px 14px; border-radius: 10px; z-index: 2000; }
+    .skip-link:focus { left: 12px; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5,5,5,.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      transition: background .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .topbar.is-scrolled {
+      background: rgba(5,5,5,.94);
+      border-color: rgba(250,204,21,.22);
+      box-shadow: 0 14px 48px rgba(0,0,0,.42);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; min-height: var(--nav-height); gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 950; letter-spacing: -.05em; font-size: 1.28rem; }
+    .brand-mark { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; color: #111; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: 0 12px 28px rgba(250,204,21,.26); }
+    .nav-links { display: flex; align-items: center; gap: 22px; color: var(--muted); font-weight: 750; }
+    .nav-links a { transition: color .18s ease; }
+    .nav-links a:hover, .nav-links a.active { color: var(--brand); }
+    .menu-toggle { display: none; background: rgba(255,255,255,.06); border: 1px solid var(--line); color: var(--text); width: 46px; height: 46px; border-radius: 14px; }
+
+    .hero { padding: 86px 0 48px; scroll-margin-top: calc(var(--nav-height) + 24px); }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; }
+    .hero h1 { font-size: clamp(3.1rem, 8vw, 6.7rem); line-height: .86; letter-spacing: -.08em; margin: 14px 0 22px; }
+    .hero p { color: #d4d4d4; font-size: clamp(1.06rem, 2vw, 1.25rem); max-width: 620px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 34px; }
+    .metric { background: rgba(255,255,255,.06); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 18px; }
+    .metric strong { display: block; font-size: 1.6rem; letter-spacing: -.05em; }
+    .metric span, .muted { color: var(--muted); }
+    .hero-card { position: relative; min-height: 600px; background: linear-gradient(150deg, rgba(250,204,21,.24), rgba(255,255,255,.04) 42%, rgba(255,255,255,.08)); border: 1px solid var(--line); border-radius: 40px; padding: 26px; box-shadow: var(--shadow); overflow: hidden; }
+    .hero-card:before { content: ""; position: absolute; width: 360px; height: 360px; background: rgba(250,204,21,.28); filter: blur(42px); border-radius: 50%; right: -120px; top: -120px; }
+    .sticker-stack { position: relative; height: 100%; min-height: 540px; }
+    .sample-sticker { position: absolute; border-radius: 30px; border: 1px solid rgba(255,255,255,.18); background: #111; box-shadow: 0 25px 70px rgba(0,0,0,.42); display: grid; place-items: center; text-align: center; font-weight: 950; letter-spacing: -.06em; }
+    .sample-sticker.one { inset: 50px 60px auto 15px; width: 330px; height: 220px; transform: rotate(-9deg); background: linear-gradient(135deg, #111 20%, #292524); }
+    .sample-sticker.two { right: 20px; top: 190px; width: 300px; height: 300px; border-radius: 42px; transform: rotate(8deg); background: linear-gradient(135deg, var(--brand), #fff7ad); color: #111; font-size: 3.8rem; }
+    .sample-sticker.three { left: 48px; bottom: 72px; width: 260px; height: 160px; transform: rotate(7deg); background: #f5f5f4; color: #111; }
+    .floating-note { position: absolute; right: 26px; bottom: 24px; background: rgba(5,5,5,.72); border: 1px solid var(--line); border-radius: 22px; padding: 16px; color: var(--muted); backdrop-filter: blur(16px); max-width: 250px; }
+    .floating-note strong { color: var(--text); display: block; }
+
+    .trust-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; }
+    .trust-card, .service-card, .step-card, .testimonial, .faq-item, .order-panel { background: rgba(255,255,255,.055); border: 1px solid var(--line); border-radius: var(--radius-xl); box-shadow: var(--shadow); }
+    .trust-card, .service-card, .step-card, .testimonial { padding: 22px; }
+    .trust-card strong { display: block; margin-bottom: 5px; }
+    .trust-card span, .service-card p, .step-card p { color: var(--muted); }
+
+    .services-grid, .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 34px; }
+    .service-card { transition: transform .18s ease, border-color .18s ease; }
+    .service-card:hover { transform: translateY(-5px); border-color: rgba(250,204,21,.45); }
+    .icon { width: 48px; height: 48px; border-radius: 16px; display: grid; place-items: center; background: rgba(250,204,21,.12); color: var(--brand); margin-bottom: 18px; }
+    .service-card h3 { margin: 0 0 8px; font-size: 1.25rem; }
+    .service-card p { margin: 0; }
+
+    .order-layout { display: grid; grid-template-columns: .95fr 1.05fr; gap: 18px; align-items: start; margin-top: 34px; }
+    .order-panel { padding: 24px; }
+    .option-grid, .field-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .option-grid { margin: 16px 0 22px; }
+    .option-button { border: 1px solid var(--line); color: var(--text); background: rgba(255,255,255,.06); border-radius: 18px; padding: 16px 12px; font-weight: 850; transition: .18s ease; }
+    .option-button[aria-pressed="true"], .option-button:hover { border-color: rgba(250,204,21,.7); background: rgba(250,204,21,.14); color: var(--brand); }
+    .field { margin-bottom: 15px; }
+    .field label { display: block; font-weight: 800; margin-bottom: 7px; font-size: .9rem; }
+    .input, .textarea, .select { width: 100%; border: 1px solid var(--line); background: rgba(255,255,255,.07); color: var(--text); border-radius: 16px; padding: 13px 14px; outline: none; }
+    .input:focus, .textarea:focus, .select:focus { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(250,204,21,.12); }
+    .textarea { min-height: 104px; resize: vertical; }
+    .select option { color: #111; }
+    .price { font-size: clamp(2.3rem, 7vw, 4.4rem); line-height: 1; letter-spacing: -.07em; font-weight: 950; margin: 4px 0; }
+    .summary-list { display: grid; gap: 10px; margin: 18px 0 0; }
+    .summary-row { display: flex; justify-content: space-between; gap: 14px; color: var(--muted); border-bottom: 1px dashed var(--line); padding-bottom: 10px; }
+    .summary-row strong { color: var(--text); text-align: right; }
+    .upload-zone { border: 1px dashed rgba(255,255,255,.25); background: rgba(255,255,255,.04); border-radius: 22px; padding: 20px; text-align: center; transition: .18s ease; }
+    .upload-zone.dragover { border-color: var(--brand); background: rgba(250,204,21,.1); }
+    .file-preview { display: none; margin-top: 14px; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: #0b0b0b; }
+    .file-preview img { width: 100%; max-height: 290px; object-fit: contain; }
+    .notice { display: none; border-radius: 16px; padding: 12px 14px; margin-top: 14px; font-weight: 750; }
+    .notice.success { display: block; background: rgba(34,197,94,.13); border: 1px solid rgba(34,197,94,.35); color: #86efac; }
+    .notice.error { display: block; background: rgba(239,68,68,.13); border: 1px solid rgba(239,68,68,.35); color: #fca5a5; }
+
+    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 34px; counter-reset: step; }
+    .step-card { counter-increment: step; }
+    .step-card:before { content: counter(step); display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--brand); color: #111; font-weight: 950; margin-bottom: 18px; }
+    .stars { color: var(--brand); letter-spacing: .08em; }
+    .testimonial p { color: #d4d4d4; }
+    .avatar { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+    .avatar span { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: rgba(250,204,21,.16); color: var(--brand); font-weight: 950; }
+
+    .faq-list { display: grid; gap: 12px; margin-top: 34px; }
+    .faq-item { padding: 0; overflow: hidden; }
+    .faq-question { width: 100%; background: transparent; color: var(--text); border: 0; display: flex; justify-content: space-between; gap: 18px; padding: 20px; text-align: left; font-weight: 850; }
+    .faq-answer { display: none; color: var(--muted); padding: 0 20px 20px; }
+    .faq-item.open .faq-answer { display: block; }
+
+    .cta { padding: 68px 0 92px; }
+    .cta-box { background: linear-gradient(135deg, rgba(250,204,21,.22), rgba(255,255,255,.06)); border: 1px solid rgba(250,204,21,.28); border-radius: 36px; padding: clamp(28px, 6vw, 56px); display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; box-shadow: var(--shadow); }
+    .cta h2 { margin: 0 0 10px; font-size: clamp(2rem, 5vw, 4rem); line-height: .98; letter-spacing: -.06em; }
+    .cta p { color: var(--muted); margin: 0; }
+    footer { border-top: 1px solid var(--line); padding: 34px 0; color: var(--muted); }
+    .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .001ms !important; animation-duration: .001ms !important; }
+    }
+    @media (max-width: 920px) {
+      .hero-grid, .order-layout, .cta-box { grid-template-columns: 1fr; }
+      .hero-card { min-height: 500px; }
+      .trust-row, .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .nav-links { position: fixed; inset: var(--nav-height) 16px auto; display: none; flex-direction: column; align-items: stretch; background: rgba(10,10,10,.96); border: 1px solid var(--line); border-radius: 24px; padding: 18px; box-shadow: var(--shadow); }
+      .nav-links.open { display: flex; }
+      .nav-links .btn { width: 100%; }
+      .menu-toggle { display: inline-grid; place-items: center; }
+    }
+    @media (max-width: 620px) {
+      .section { padding: 68px 0; }
+      .hero { padding-top: 54px; }
+      .metrics, .trust-row, .option-grid, .field-grid, .steps-grid { grid-template-columns: 1fr; }
+      .hero-card { min-height: 420px; border-radius: 28px; padding: 18px; }
+      .sample-sticker.one { width: 250px; height: 170px; left: 0; top: 50px; }
+      .sample-sticker.two { width: 210px; height: 210px; right: 0; top: 165px; font-size: 2.7rem; }
+      .sample-sticker.three { width: 210px; height: 130px; left: 18px; bottom: 48px; }
+      .floating-note { position: relative; right: auto; bottom: auto; margin-top: 18px; max-width: none; }
+    }
+  </style>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- assumed: this remains a static preview build, so quote requests open Messenger instead of processing live checkout. -->
+  <a class="skip-link" href="#order">Skip to order form</a>
 
-    <main id="main-content">
-        <div class="container">
-            <header>
-                <h1 class="brand-title">MAGE CUSTOMS</h1>
-                <p class="brand-sub">Premium Vinyl Stickers</p>
-            </header>
+  <header class="topbar">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand nav-scroll-link" href="#top" aria-label="Mage Customs home">
+        <span class="brand-mark">M</span>
+        <span>Mage Customs</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a class="nav-scroll-link" href="#services">Services</a>
+        <a class="nav-scroll-link" href="#order">Pricing</a>
+        <a class="nav-scroll-link" href="#process">Process</a>
+        <a class="nav-scroll-link" href="#faq">FAQ</a>
+        <a class="btn btn-primary" href="https://m.me/hayfacepalm" target="_blank" rel="noopener">Chat now</a>
+      </div>
+    </nav>
+  </header>
 
-            <section class="pricing-section" aria-labelledby="pricing-heading">
-                <h2 id="pricing-heading" class="sr-only">Sticker Pricing Options</h2>
-
-                <div class="toggle-wrap" role="tablist" aria-label="Size selection">
-                    <div class="slider-bg"></div>
-                    <button class="toggle-btn active" aria-selected="true" role="tab" aria-controls="price-list">2×2</button>
-                    <button class="toggle-btn" aria-selected="false" role="tab" aria-controls="price-list">3×3</button>
-                    <button class="toggle-btn" aria-selected="false" role="tab" aria-controls="custom-inputs">Custom</button>
-                </div>
-
-                <div id="custom-flex-wrapper" style="display: none;">
-                    <form id="custom-inputs" style="flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: var(--border-radius); padding: var(--spacing-md);" class="custom-form" aria-labelledby="custom-heading">
-                        <h3 id="custom-heading" class="detail-title">Custom Size Calculator</h3>
-                        <div style="display: flex; gap: var(--spacing-md); align-items: center; flex-wrap: wrap;">
-                            <label for="width" style="color: var(--text);">Width (inches):
-                                <input type="number" id="width" min="1" max="10" value="2" style="background: #111; border: 1px solid var(--border); color: var(--text); padding: var(--spacing-xs); border-radius: var(--border-radius-sm);">
-                            </label>
-                            <label for="height" style="color: var(--text);">Height (inches):
-                                <input type="number" id="height" min="1" max="10" value="2" style="background: #111; border: 1px solid var(--border); color: var(--text); padding: var(--spacing-xs); border-radius: var(--border-radius-sm);">
-                            </label>
-                            <label for="qty" style="color: var(--text);">Quantity:
-                                <input type="number" id="qty" min="1" value="20" style="background: #111; border: 1px solid var(--border); color: var(--text); padding: var(--spacing-xs); border-radius: var(--border-radius-sm);">
-                            </label>
-                            <button type="button" id="calculate-btn" style="background: var(--accent-gold); color: #000; border: none; padding: 10px 20px; border-radius: var(--border-radius-sm); cursor: pointer; font-weight: 700;">Calculate Price</button>
-                        </div>
-                        <div class="upload-field">
-                            <label for="file-upload" style="color: var(--text); font-weight: 600;">Upload your design (PNG only, HD image required)</label>
-                            <input type="file" id="file-upload" accept="image/png" aria-describedby="file-note file-error">
-                            <span id="file-note" class="order-note">We only accept high-resolution PNG with transparent background.</span>
-                            <span id="file-error" class="field-error" aria-live="polite"></span>
-                        </div>
-                        <div class="payment-field">
-                            <label style="color: var(--text); font-weight: 600;">Payment method</label>
-                            <div class="payment-options" role="radiogroup" aria-labelledby="payment-label">
-                                <label class="payment-option">
-                                    <input type="radio" name="payment-method" value="gcash">
-                                    <span>GCash</span>
-                                </label>
-                                <label class="payment-option">
-                                    <input type="radio" name="payment-method" value="bank-transfer">
-                                    <span>Bank Transfer</span>
-                                </label>
-                                <label class="payment-option">
-                                    <input type="radio" name="payment-method" value="paypal">
-                                    <span>PayPal</span>
-                                </label>
-                            </div>
-                            <span id="payment-error" class="field-error" aria-live="polite"></span>
-                            <button type="button" id="custom-order-btn" style="background: var(--accent-gold); color: #000; border: none; padding: 12px 24px; border-radius: var(--border-radius-sm); cursor: pointer; font-weight: 700; width: 100%; margin-top: var(--spacing-md);">Review Order</button>
-                        </div>
-                    </form>
-
-                    <section id="order-section" class="order-section" style="flex: 0 1 300px;" aria-labelledby="order-heading">
-                        <h3 id="order-heading" class="sr-only">Order summary and checkout</h3>
-                        <div class="order-summary">
-                            <div class="order-summary-row">
-                                <span>Size</span>
-                                <span id="order-size">-</span>
-                            </div>
-                            <div class="order-summary-row">
-                                <span>Quantity</span>
-                                <span id="order-qty">-</span>
-                            </div>
-                            <div class="order-summary-row">
-                                <span>Total Price</span>
-                                <span id="order-price">-</span>
-                            </div>
-                            <div class="order-summary-row">
-                                <span>Payment</span>
-                                <span id="order-payment">-</span>
-                            </div>
-                            <div id="order-summary-text" class="order-note">Upload your PNG and select a payment method to enable checkout.</div>
-                        </div>
-                        <button type="button" id="order-btn" class="order-button" disabled>Place Order</button>
-                        <div id="order-feedback" class="order-feedback"></div>
-                    </section>
-                </div>
-
-                <div id="price-list" role="region" aria-live="polite" aria-label="Price calculations"></div>
-                <div id="default-order-cta" class="default-order-cta" style="display:none;">
-                    <p>Choose a standard preset price, then tap Order to proceed. For artwork upload and payment, use the Custom tab.</p>
-                    <button type="button" id="default-order-btn" class="order-button">Order this size</button>
-                </div>
-            </section>
-
-            <section class="details-section" aria-labelledby="details-heading">
-                <h2 id="details-heading" class="sr-only">Product Details</h2>
-
-                <article class="detail-card">
-                    <h3 class="detail-title">Product Specifications</h3>
-                    <ul class="detail-list">
-                        <li>Professionally Die-cut with Phototop Lamination</li>
-                        <li>High Quality: Does not fade easily (Rain or Shine). Lasts over a year.</li>
-                        <li>Versatile Use: Suitable for indoors, outdoors, bikes, scooters, motorcycles, etc.</li>
-                    </ul>
-                </article>
-
-                <article class="detail-card">
-                    <h3 class="detail-title">Application & Order Tips</h3>
-                    <ul class="detail-list">
-                        <li>Application Tip: Clean the surface first. Ensure no dirt, residue, or wax spray before applying.</li>
-                        <li>Production Time: Please allow up to 3-5 days for design arrangement, printing, and processing.</li>
-                        <li>File Requirement: Provide your own HD Image-Logo. PNG file with transparent background only or Send me a google drive link.</li>
-                        <li>Full payment required before printing.</li>
-                    </ul>
-                </article>
-            </section>
-
-            <footer class="footer-notes">
-                <p style="color: var(--muted); font-size: 0.85rem; text-align: center;">For inquiries and orders, click the chat button or call us.</p>
-                <a href="tel:09954441281" class="contact-btn">Call: 0995 444 1281</a>
-            </footer>
+  <main id="top">
+    <section class="hero" data-nav-section="top">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Premium sticker printing</div>
+          <h1>Custom stickers that make your brand impossible to miss.</h1>
+          <p>Waterproof, UV-resistant, clean-cut stickers for businesses, motor builds, creators, product labels, packaging, and merch drops.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary nav-scroll-link" href="#order">Start a quote</a>
+            <a class="btn btn-secondary" href="https://m.me/hayfacepalm" target="_blank" rel="noopener">Message on Messenger</a>
+          </div>
+          <div class="metrics" aria-label="Business highlights">
+            <div class="metric"><strong>3–5</strong><span>day standard turnaround</span></div>
+            <div class="metric"><strong>2×2</strong><span>starter packs available</span></div>
+            <div class="metric"><strong>100%</strong><span>custom sizing support</span></div>
+          </div>
         </div>
-    </main>
+        <div class="hero-card" aria-label="Sticker product preview">
+          <div class="sticker-stack">
+            <div class="sample-sticker one"><span>WATERPROOF<br>VINYL</span></div>
+            <div class="sample-sticker two">MAGE</div>
+            <div class="sample-sticker three"><span>BRAND LABELS<br>& MERCH</span></div>
+            <div class="floating-note"><strong>Artwork-ready output</strong>Upload your design, pick your size, and send a quote request in minutes.</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Messenger Chatbox Widget -->
-    <aside class="messenger-chatbox" aria-label="Contact options">
-        <div class="messenger-tooltip">Chat with us on Messenger</div>
-        <a href="https://m.me/hayfacepalm" target="_blank" class="messenger-bubble" aria-label="Open Messenger chat">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2C6.477 2 2 6.145 2 11.258c0 2.91 1.453 5.503 3.735 7.153V22l3.435-1.885c.895.248 1.844.383 2.83.383 5.523 0 10-4.145 10-9.258S17.523 2 12 2zm1.07 12.564l-2.583-2.756-5.043 2.756 5.548-5.894 2.657 2.756 4.969-2.756-5.548 5.894z"/>
-            </svg>
-        </a>
-    </aside>
+    <section class="container" aria-label="Trust badges">
+      <div class="trust-row">
+        <div class="trust-card"><strong>Waterproof finish</strong><span>Built for bottles, helmets, bikes, laptops, and packaging.</span></div>
+        <div class="trust-card"><strong>UV resistant</strong><span>Made to keep colors looking sharp longer outdoors.</span></div>
+        <div class="trust-card"><strong>Clean-cut quality</strong><span>Square, round, contour, and custom shape options.</span></div>
+        <div class="trust-card"><strong>Fast support</strong><span>Chat-based ordering with quick artwork review.</span></div>
+      </div>
+    </section>
 
-    <script>
-        // === PRICING DATA (3 TIERS) ===
-        const PRICE_DATA = {
-            '2x2': [
-                { qty: 20, price: 440, unit: 22, save: 0, badge: null },
-                { qty: 50, price: 900, unit: 18, save: 200, badge: 'popular' },
-                { qty: 100, price: 1400, unit: 14, save: 800, badge: 'best' }
-            ],
-            '3x3': [
-                { qty: 20, price: 700, unit: 35, save: 0, badge: null },
-                { qty: 50, price: 1400, unit: 28, save: 350, badge: 'popular' },
-                { qty: 100, price: 2200, unit: 22, save: 1300, badge: 'best' }
-            ]
-        };
+    <section class="section" id="services" data-nav-section="services">
+      <div class="container">
+        <div class="eyebrow">What we print</div>
+        <h2 class="section-title">Stickers for every launch, ride, and campaign.</h2>
+        <p class="section-copy">Choose standard packs for fast orders or request custom dimensions for product labels, motorcycle decals, event giveaways, creator merch, and business branding.</p>
+        <div class="services-grid">
+          <article class="service-card"><div class="icon">✦</div><h3>Logo & brand stickers</h3><p>Premium stickers for packaging, storefronts, giveaways, and customer freebies.</p></article>
+          <article class="service-card"><div class="icon">⚡</div><h3>Bike & gear decals</h3><p>Durable decals for helmets, motorcycles, toolboxes, tumblers, and outdoor use.</p></article>
+          <article class="service-card"><div class="icon">●</div><h3>Custom product labels</h3><p>Size-matched labels for jars, pouches, boxes, bottles, and limited drops.</p></article>
+        </div>
+      </div>
+    </section>
 
-        // Cache DOM elements for better performance
-        const elements = {
-            listEl: document.getElementById('price-list'),
-            toggleWrap: document.querySelector('.toggle-wrap'),
-            customInputs: document.getElementById('custom-inputs'),
-            customFlexWrapper: document.getElementById('custom-flex-wrapper'),
-            widthInput: document.getElementById('width'),
-            heightInput: document.getElementById('height'),
-            qtyInput: document.getElementById('qty'),
-            calculateBtn: document.getElementById('calculate-btn'),
-            fileInput: document.getElementById('file-upload'),
-            fileError: document.getElementById('file-error'),
-            paymentRadios: document.querySelectorAll('input[name="payment-method"]'),
-            paymentError: document.getElementById('payment-error'),
-            customOrderBtn: document.getElementById('custom-order-btn'),
-            orderBtn: document.getElementById('order-btn'),
-            orderSection: document.getElementById('order-section'),
-            orderFeedback: document.getElementById('order-feedback'),
-            defaultOrderCta: document.getElementById('default-order-cta'),
-            defaultOrderBtn: document.getElementById('default-order-btn'),
-            orderSummaryText: document.getElementById('order-summary-text'),
-            toggleBtns: document.querySelectorAll('.toggle-btn')
-        };
+    <section class="section" id="order" data-nav-section="order">
+      <div class="container">
+        <div class="eyebrow">Instant quote preview</div>
+        <h2 class="section-title">Build your sticker order.</h2>
+        <p class="section-copy">Pick a standard size or enter custom dimensions. This preview estimates pricing and prepares a Messenger order message.</p>
 
-        let currentSize = '2x2';
-        let expandedIndex = null;
-        let customData = null;
+        <div class="order-layout">
+          <form class="order-panel" id="quoteForm" novalidate>
+            <div class="field">
+              <label>Sticker size</label>
+              <div class="option-grid" role="group" aria-label="Sticker size">
+                <button class="option-button" type="button" data-size="2x2" aria-pressed="true">2×2 in</button>
+                <button class="option-button" type="button" data-size="3x3" aria-pressed="false">3×3 in</button>
+                <button class="option-button" type="button" data-size="custom" aria-pressed="false">Custom</button>
+              </div>
+            </div>
+            <div class="field-grid" id="customFields" hidden>
+              <div class="field"><label for="widthInput">Width (in)</label><input class="input" id="widthInput" type="number" min="0.5" max="24" step="0.1" value="2" /></div>
+              <div class="field"><label for="heightInput">Height (in)</label><input class="input" id="heightInput" type="number" min="0.5" max="24" step="0.1" value="2" /></div>
+              <div class="field"><label for="quantityInput">Quantity</label><input class="input" id="quantityInput" type="number" min="10" max="10000" step="1" value="20" /></div>
+            </div>
+            <div class="field" id="standardQuantityField"><label for="standardPack">Standard pack</label><select class="select" id="standardPack"></select></div>
+            <div class="field"><label for="finishInput">Finish</label><select class="select" id="finishInput"><option value="Gloss waterproof">Gloss waterproof</option><option value="Matte waterproof">Matte waterproof</option><option value="Transparent sticker">Transparent sticker</option><option value="Holographic premium">Holographic premium</option></select></div>
+            <div class="field"><label for="cutInput">Cut style</label><select class="select" id="cutInput"><option value="Square/rectangle cut">Square/rectangle cut</option><option value="Round cut">Round cut</option><option value="Contour die-cut">Contour die-cut</option></select></div>
+            <div class="field"><label for="customerName">Name</label><input class="input" id="customerName" autocomplete="name" placeholder="Your name" required /></div>
+            <div class="field"><label for="notesInput">Order notes</label><textarea class="textarea" id="notesInput" placeholder="Tell us where you will use the stickers, deadline, preferred shape, or delivery notes."></textarea></div>
+            <div class="upload-zone" id="uploadZone">
+              <strong>Upload artwork preview</strong>
+              <p class="muted">PNG, JPG, SVG, or PDF. Max preview file size: 8MB.</p>
+              <input id="artworkInput" type="file" accept="image/png,image/jpeg,image/svg+xml,application/pdf" />
+              <div class="file-preview" id="filePreview"><img id="previewImage" alt="Uploaded artwork preview" /></div>
+              <div class="muted" id="fileName"></div>
+            </div>
+            <div class="notice" id="formNotice" role="status"></div>
+          </form>
 
-        // Initialize event listeners
-        function initEventListeners() {
-            // Toggle buttons
-            elements.toggleBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const size = btn.textContent.toLowerCase().replace('×', 'x');
-                    switchSize(size, btn);
-                });
-            });
+          <aside class="order-panel" aria-label="Quote summary">
+            <div class="eyebrow">Estimated total</div>
+            <div class="price" id="totalPrice">₱440</div>
+            <div class="muted">Final price may change after artwork review for special cuts or premium materials.</div>
+            <div class="summary-list">
+              <div class="summary-row"><span>Size</span><strong id="summarySize">2×2 in</strong></div>
+              <div class="summary-row"><span>Quantity</span><strong id="summaryQuantity">20 pcs</strong></div>
+              <div class="summary-row"><span>Finish</span><strong id="summaryFinish">Gloss waterproof</strong></div>
+              <div class="summary-row"><span>Cut</span><strong id="summaryCut">Square/rectangle cut</strong></div>
+              <div class="summary-row"><span>Artwork</span><strong id="summaryArtwork">Not uploaded</strong></div>
+            </div>
+            <a class="btn btn-primary btn-block" id="messengerOrder" target="_blank" rel="noopener" style="margin-top:22px;" href="https://m.me/hayfacepalm">Send quote request</a>
+            <button class="btn btn-secondary btn-block" id="copyQuote" type="button" style="margin-top:10px;">Copy quote details</button>
+          </aside>
+        </div>
+      </div>
+    </section>
 
-            // Calculate button
-            elements.calculateBtn.addEventListener('click', calculateCustom);
+    <section class="section" id="process" data-nav-section="process">
+      <div class="container">
+        <div class="eyebrow">Simple process</div>
+        <h2 class="section-title">From artwork to ready-to-stick.</h2>
+        <div class="steps-grid">
+          <article class="step-card"><h3>Build quote</h3><p>Select size, quantity, finish, cut, and upload your artwork preview.</p></article>
+          <article class="step-card"><h3>Artwork check</h3><p>We review resolution, bleed, shape, and print-readiness before production.</p></article>
+          <article class="step-card"><h3>Print & cut</h3><p>Your stickers are printed, laminated if needed, and cut to the selected style.</p></article>
+          <article class="step-card"><h3>Pickup or ship</h3><p>Receive your order with clean packing and status updates through chat.</p></article>
+        </div>
+      </div>
+    </section>
 
-            // File upload validation
-            elements.fileInput.addEventListener('change', handleFileUpload);
+    <section class="section">
+      <div class="container">
+        <div class="eyebrow">Customer proof</div>
+        <h2 class="section-title">Made for small businesses and creators.</h2>
+        <div class="testimonials-grid">
+          <article class="testimonial"><div class="stars">★★★★★</div><p>“Clean colors and the stickers held up well on our product packaging.”</p><div class="avatar"><span>R</span><div><strong>Retail brand</strong><div class="muted">Packaging labels</div></div></div></article>
+          <article class="testimonial"><div class="stars">★★★★★</div><p>“Fast replies and easy ordering. Perfect for our bike group decals.”</p><div class="avatar"><span>B</span><div><strong>Bike club</strong><div class="muted">Outdoor decals</div></div></div></article>
+          <article class="testimonial"><div class="stars">★★★★★</div><p>“The upload and quote flow made it simple to prep our merch drop.”</p><div class="avatar"><span>C</span><div><strong>Creator shop</strong><div class="muted">Merch stickers</div></div></div></article>
+        </div>
+      </div>
+    </section>
 
-            // Payment selection
-            elements.paymentRadios.forEach(radio => {
-                radio.addEventListener('change', handlePaymentChange);
-            });
+    <section class="section" id="faq" data-nav-section="faq">
+      <div class="container">
+        <div class="eyebrow">FAQ</div>
+        <h2 class="section-title">Questions before printing?</h2>
+        <div class="faq-list">
+          <article class="faq-item open"><button class="faq-question" type="button">What file should I upload?<span>+</span></button><div class="faq-answer">PNG, JPG, SVG, or PDF works for quote preview. For best print quality, send high-resolution artwork or vector files when available.</div></article>
+          <article class="faq-item"><button class="faq-question" type="button">How fast is production?<span>+</span></button><div class="faq-answer">Standard turnaround is usually 3–5 days after artwork approval and payment confirmation. Rush requests can be reviewed through chat.</div></article>
+          <article class="faq-item"><button class="faq-question" type="button">Can you print custom shapes?<span>+</span></button><div class="faq-answer">Yes. Choose contour die-cut in the quote builder and describe the preferred shape in the notes.</div></article>
+          <article class="faq-item"><button class="faq-question" type="button">Is this an online checkout?<span>+</span></button><div class="faq-answer">This static preview prepares a quote request. Final confirmation, payment method, and delivery details are handled through Messenger.</div></article>
+        </div>
+      </div>
+    </section>
 
-            // Order button
-            elements.orderBtn.addEventListener('click', submitOrder);
-            elements.customOrderBtn.addEventListener('click', handleReviewOrder);
-            elements.defaultOrderBtn.addEventListener('click', handleDefaultOrder);
+    <section class="cta">
+      <div class="container cta-box">
+        <div><h2>Ready to print your next sticker drop?</h2><p>Send your quote request now and get your artwork reviewed before production.</p></div>
+        <a class="btn btn-primary nav-scroll-link" href="#order">Start order</a>
+      </div>
+    </section>
+  </main>
 
-            // Keyboard navigation for toggle
-            elements.toggleWrap.addEventListener('keydown', (e) => {
-                const buttons = Array.from(elements.toggleBtns);
-                const currentIndex = buttons.findIndex(btn => btn.classList.contains('active'));
+  <footer>
+    <div class="container footer-grid">
+      <div><strong>Mage Customs</strong><br />Premium custom sticker printing.</div>
+      <div>© <span id="year"></span> Mage Customs. All rights reserved.</div>
+    </div>
+  </footer>
 
-                if (e.key === 'ArrowRight' && currentIndex < buttons.length - 1) {
-                    e.preventDefault();
-                    buttons[currentIndex + 1].click();
-                } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
-                    e.preventDefault();
-                    buttons[currentIndex - 1].click();
-                }
-            });
-        }
+  <script>
+    const pricing = {
+      "2x2": [{ qty: 20, price: 440 }, { qty: 50, price: 900 }, { qty: 100, price: 1400 }],
+      "3x3": [{ qty: 20, price: 700 }, { qty: 50, price: 1400 }, { qty: 100, price: 2200 }]
+    };
 
-        function render() {
-            const data = currentSize === 'custom' ? (customData ? [customData] : []) : PRICE_DATA[currentSize];
-            elements.listEl.innerHTML = '';
-            orderState.hasPrice = data.length > 0;
-            updateOrderSummary(data[0]);
-            const isCustom = currentSize === 'custom';
-            elements.defaultOrderCta.style.display = (!isCustom && orderState.hasPrice) ? 'block' : 'none';
-            elements.listEl.style.display = isCustom ? 'none' : 'block';
-            updateOrderSection(isCustom);
+    const state = { size: "2x2", uploadedFileName: "", artworkObjectUrl: null };
 
-            if (isCustom) return;
+    const elements = {
+      topbar: document.querySelector(".topbar"),
+      menuToggle: document.getElementById("menuToggle"),
+      navLinks: document.getElementById("navLinks"),
+      navScrollLinks: Array.from(document.querySelectorAll(".nav-scroll-link")),
+      navSectionLinks: Array.from(document.querySelectorAll('.nav-links a[href^="#"]')),
+      sections: Array.from(document.querySelectorAll("[data-nav-section]")),
+      sizeButtons: Array.from(document.querySelectorAll(".option-button[data-size]")),
+      customFields: document.getElementById("customFields"),
+      standardQuantityField: document.getElementById("standardQuantityField"),
+      standardPack: document.getElementById("standardPack"),
+      widthInput: document.getElementById("widthInput"),
+      heightInput: document.getElementById("heightInput"),
+      quantityInput: document.getElementById("quantityInput"),
+      finishInput: document.getElementById("finishInput"),
+      cutInput: document.getElementById("cutInput"),
+      customerName: document.getElementById("customerName"),
+      notesInput: document.getElementById("notesInput"),
+      artworkInput: document.getElementById("artworkInput"),
+      uploadZone: document.getElementById("uploadZone"),
+      filePreview: document.getElementById("filePreview"),
+      previewImage: document.getElementById("previewImage"),
+      fileName: document.getElementById("fileName"),
+      totalPrice: document.getElementById("totalPrice"),
+      summarySize: document.getElementById("summarySize"),
+      summaryQuantity: document.getElementById("summaryQuantity"),
+      summaryFinish: document.getElementById("summaryFinish"),
+      summaryCut: document.getElementById("summaryCut"),
+      summaryArtwork: document.getElementById("summaryArtwork"),
+      messengerOrder: document.getElementById("messengerOrder"),
+      copyQuote: document.getElementById("copyQuote"),
+      formNotice: document.getElementById("formNotice"),
+      year: document.getElementById("year")
+    };
 
-            data.forEach((item, index) => {
-                const card = document.createElement('div');
-                let classes = 'price-card';
-                if (item.badge === 'popular') classes += ' popular';
-                if (item.badge === 'best') classes += ' best';
-                if (expandedIndex === index) classes += ' expanded';
+    function formatCurrency(value) {
+      return new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP", maximumFractionDigits: 0 }).format(value);
+    }
 
-                card.className = classes;
-                card.setAttribute('role', 'button');
-                card.setAttribute('tabindex', '0');
-                card.setAttribute('aria-expanded', expandedIndex === index);
-                card.addEventListener('click', () => toggleExpand(index));
-                card.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        toggleExpand(index);
-                    }
-                });
+    function clampNumber(value, min, max, fallback) {
+      const number = Number(value);
+      return Number.isFinite(number) ? Math.min(Math.max(number, min), max) : fallback;
+    }
 
-                let badgeHtml = '';
-                if (item.badge) {
-                    const badgeClass = item.badge === 'popular' ? 'badge-popular' : 'badge-best';
-                    const badgeText = item.badge === 'popular' ? 'Most Popular' : 'Best Value';
-                    badgeHtml = `<span class="badge ${badgeClass}">${badgeText}</span>`;
-                }
+    function getQuote() {
+      const finishMultiplier = elements.finishInput.value.includes("Holographic") ? 1.35 : elements.finishInput.value.includes("Transparent") ? 1.18 : 1;
+      const cutMultiplier = elements.cutInput.value.includes("Contour") ? 1.18 : 1;
+      if (state.size === "custom") {
+        const width = clampNumber(elements.widthInput.value, 0.5, 24, 2);
+        const height = clampNumber(elements.heightInput.value, 0.5, 24, 2);
+        const quantity = Math.round(clampNumber(elements.quantityInput.value, 10, 10000, 20));
+        const baseRate = quantity <= 20 ? 22 : quantity <= 50 ? 18 : quantity <= 100 ? 14 : 12;
+        const total = Math.max(250, Math.round(baseRate * Math.sqrt((width * height) / 4) * quantity * finishMultiplier * cutMultiplier));
+        return { sizeLabel: `${width}×${height} in`, quantity, total };
+      }
+      const selectedPack = pricing[state.size][Number(elements.standardPack.value) || 0];
+      return { sizeLabel: state.size.replace("x", "×") + " in", quantity: selectedPack.qty, total: Math.round(selectedPack.price * finishMultiplier * cutMultiplier) };
+    }
 
-                let saveHtml = '';
-                if (item.save > 0) {
-                    saveHtml = `<span class="sub-price">Save ₱${item.save.toLocaleString()}</span>`;
-                }
+    function buildQuoteMessage() {
+      const quote = getQuote();
+      const name = elements.customerName.value.trim() || "Customer";
+      const notes = elements.notesInput.value.trim() || "No extra notes";
+      return [
+        "Hi Mage Customs, I want to request a sticker quote.",
+        `Name: ${name}`,
+        `Size: ${quote.sizeLabel}`,
+        `Quantity: ${quote.quantity} pcs`,
+        `Finish: ${elements.finishInput.value}`,
+        `Cut: ${elements.cutInput.value}`,
+        `Estimated total: ${formatCurrency(quote.total)}`,
+        `Artwork uploaded in preview: ${state.uploadedFileName || "No"}`,
+        `Notes: ${notes}`
+      ].join("\n");
+    }
 
-                card.innerHTML = `
-                    <div class="card-header">
-                        <div class="qty-group">
-                            <h2>${item.qty}</h2>
-                            <span>Pieces</span>
-                        </div>
-                        ${badgeHtml}
-                    </div>
-                    <div class="price-display">
-                        <span class="main-price">₱${item.price.toLocaleString()}</span>
-                        ${saveHtml}
-                    </div>
-                    <div class="breakdown">
-                        <div class="stat-grid">
-                            <div class="stat-item">
-                                <label>Unit Price</label>
-                                <value>₱${item.unit}</value>
-                            </div>
-                            <div class="stat-item">
-                                <label>Total Savings</label>
-                                <value class="savings-value">₱${item.save.toLocaleString()}</value>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                elements.listEl.appendChild(card);
-            });
-        }
+    function updateStandardPacks() {
+      elements.standardPack.innerHTML = pricing[state.size].map((pack, index) => `<option value="${index}">${pack.qty} pcs — ${formatCurrency(pack.price)}</option>`).join("");
+    }
 
-        function toggleExpand(index) {
-            expandedIndex = (expandedIndex === index) ? null : index;
-            render();
-        }
+    function updateQuote() {
+      const quote = getQuote();
+      elements.totalPrice.textContent = formatCurrency(quote.total);
+      elements.summarySize.textContent = quote.sizeLabel;
+      elements.summaryQuantity.textContent = `${quote.quantity} pcs`;
+      elements.summaryFinish.textContent = elements.finishInput.value;
+      elements.summaryCut.textContent = elements.cutInput.value;
+      elements.summaryArtwork.textContent = state.uploadedFileName || "Not uploaded";
+      elements.messengerOrder.href = `https://m.me/hayfacepalm?text=${encodeURIComponent(buildQuoteMessage())}`;
+    }
 
-        function calculatePrice(w, h, qty) {
-            try {
-                if (w <= 0 || h <= 0 || qty <= 0) {
-                    throw new Error('Invalid dimensions or quantity');
-                }
+    function selectSize(size) {
+      state.size = size;
+      elements.sizeButtons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.size === size)));
+      const isCustom = size === "custom";
+      elements.customFields.hidden = !isCustom;
+      elements.standardQuantityField.hidden = isCustom;
+      if (!isCustom) updateStandardPacks();
+      updateQuote();
+    }
 
-                const area = w * h;
-                const scaling = Math.sqrt(area / 4);
-                let unit;
-                if (qty <= 20) {
-                    unit = 22 * scaling;
-                } else if (qty <= 50) {
-                    unit = 18 * scaling;
-                } else {
-                    unit = 14 * scaling;
-                }
-                const total = Math.round(unit * qty);
-                const base_unit = 22 * scaling;
-                const savings = Math.round((base_unit - unit) * qty);
-                return { total, unit: Math.round(unit), savings: Math.max(0, savings) };
-            } catch (error) {
-                console.error('Price calculation error:', error);
-                return { total: 0, unit: 0, savings: 0 };
-            }
-        }
+    function showNotice(message, type = "success") {
+      elements.formNotice.className = `notice ${type}`;
+      elements.formNotice.textContent = message;
+    }
 
-        function calculateCustom() {
-            try {
-                const w = Math.max(1, parseInt(elements.widthInput.value) || 2);
-                const h = Math.max(1, parseInt(elements.heightInput.value) || 2);
-                const qty = Math.max(1, parseInt(elements.qtyInput.value) || 20);
+    function handleArtworkFile(file) {
+      if (!file) return;
+      const allowedTypes = ["image/png", "image/jpeg", "image/svg+xml", "application/pdf"];
+      if (!allowedTypes.includes(file.type)) {
+        elements.artworkInput.value = "";
+        showNotice("Please upload a PNG, JPG, SVG, or PDF file.", "error");
+        return;
+      }
+      if (file.size > 8 * 1024 * 1024) {
+        elements.artworkInput.value = "";
+        showNotice("File is too large. Maximum preview size is 8MB.", "error");
+        return;
+      }
+      state.uploadedFileName = file.name;
+      elements.fileName.textContent = file.name;
+      if (state.artworkObjectUrl) URL.revokeObjectURL(state.artworkObjectUrl);
+      state.artworkObjectUrl = URL.createObjectURL(file);
+      if (file.type.startsWith("image/")) {
+        elements.previewImage.src = state.artworkObjectUrl;
+        elements.filePreview.style.display = "block";
+      } else {
+        elements.filePreview.style.display = "none";
+      }
+      showNotice("Artwork preview attached. Final print quality will be checked before production.");
+      updateQuote();
+    }
 
-                const { total, unit, savings } = calculatePrice(w, h, qty);
-                customData = {
-                    qty,
-                    price: total,
-                    unit,
-                    save: savings,
-                    badge: null
-                };
-                render();
-            } catch (error) {
-                console.error('Custom calculation error:', error);
-                alert('Error calculating price. Please check your inputs.');
-            }
-        }
+    function closeMobileMenu() {
+      elements.navLinks.classList.remove("open");
+      document.body.classList.remove("menu-open");
+      elements.menuToggle.setAttribute("aria-expanded", "false");
+      elements.menuToggle.textContent = "☰";
+    }
 
-        const orderState = {
-            file: null,
-            payment: null,
-            validFile: false,
-            hasPrice: false
-        };
+    function toggleMenu() {
+      const isOpen = elements.navLinks.classList.toggle("open");
+      document.body.classList.toggle("menu-open", isOpen);
+      elements.menuToggle.setAttribute("aria-expanded", String(isOpen));
+      elements.menuToggle.textContent = isOpen ? "×" : "☰";
+    }
 
-        function handleFileUpload() {
-            const file = elements.fileInput.files[0];
-            elements.fileError.textContent = '';
-            orderState.file = null;
-            orderState.validFile = false;
-            updateOrderButtonState();
+    function getHeaderOffset() {
+      return elements.topbar.getBoundingClientRect().height + 18;
+    }
 
-            if (!file) {
-                elements.fileError.textContent = 'Please select a PNG file.';
-                return;
-            }
+    function smoothScrollToHash(hash) {
+      const target = hash === "#top" ? document.getElementById("top") : document.querySelector(hash);
+      if (!target) return;
+      const top = target.getBoundingClientRect().top + window.scrollY - getHeaderOffset();
+      window.scrollTo({ top: Math.max(top, 0), behavior: "smooth" });
+      history.pushState(null, "", hash);
+    }
 
-            if (file.type !== 'image/png') {
-                elements.fileError.textContent = 'Only PNG files are accepted.';
-                return;
-            }
+    function updateStickyNavigation() {
+      elements.topbar.classList.toggle("is-scrolled", window.scrollY > 8);
+    }
 
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const image = new Image();
-                image.onload = function() {
-                    if (image.width < 800 || image.height < 800) {
-                        elements.fileError.textContent = 'Please upload a high-resolution (HD) image of at least 800×800 pixels.';
-                        orderState.validFile = false;
-                    } else {
-                        orderState.file = file;
-                        orderState.validFile = true;
-                        elements.fileError.textContent = '';
-                    }
-                    updateOrderButtonState();
-                };
-                image.onerror = function() {
-                    elements.fileError.textContent = 'Unable to read the image. Please upload a valid PNG file.';
-                    orderState.validFile = false;
-                    updateOrderButtonState();
-                };
-                image.src = event.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
+    function updateActiveNavigationLink() {
+      const offset = getHeaderOffset() + 24;
+      let activeId = "top";
+      for (const section of elements.sections) {
+        if (section.getBoundingClientRect().top <= offset) activeId = section.dataset.navSection;
+      }
+      elements.navSectionLinks.forEach(link => link.classList.toggle("active", link.getAttribute("href") === `#${activeId}`));
+    }
 
-        function handlePaymentChange(event) {
-            orderState.payment = event.target.value;
-            elements.paymentError.textContent = '';
-            updateOrderSummary(currentSize === 'custom' ? customData : PRICE_DATA[currentSize][0]);
-            updateOrderButtonState();
-        }
+    elements.menuToggle.addEventListener("click", toggleMenu);
+    elements.navScrollLinks.forEach(link => {
+      link.addEventListener("click", event => {
+        const hash = link.getAttribute("href");
+        if (!hash || !hash.startsWith("#")) return;
+        event.preventDefault();
+        closeMobileMenu();
+        smoothScrollToHash(hash);
+      });
+    });
+    elements.sizeButtons.forEach(button => button.addEventListener("click", () => selectSize(button.dataset.size)));
+    [elements.standardPack, elements.widthInput, elements.heightInput, elements.quantityInput, elements.finishInput, elements.cutInput, elements.customerName, elements.notesInput].forEach(input => {
+      input.addEventListener("input", updateQuote);
+      input.addEventListener("change", updateQuote);
+    });
+    elements.artworkInput.addEventListener("change", event => handleArtworkFile(event.target.files[0]));
+    ["dragenter", "dragover"].forEach(eventName => elements.uploadZone.addEventListener(eventName, event => {
+      event.preventDefault();
+      elements.uploadZone.classList.add("dragover");
+    }));
+    ["dragleave", "drop"].forEach(eventName => elements.uploadZone.addEventListener(eventName, event => {
+      event.preventDefault();
+      elements.uploadZone.classList.remove("dragover");
+    }));
+    elements.uploadZone.addEventListener("drop", event => handleArtworkFile(event.dataTransfer.files[0]));
+    elements.copyQuote.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(buildQuoteMessage());
+        showNotice("Quote details copied. Paste it into Messenger to send your request.");
+      } catch (error) {
+        showNotice("Copy failed. Please use the Send quote request button instead.", "error");
+      }
+    });
+    document.querySelectorAll(".faq-question").forEach(button => {
+      button.addEventListener("click", () => button.closest(".faq-item").classList.toggle("open"));
+    });
+    window.addEventListener("scroll", () => {
+      updateStickyNavigation();
+      updateActiveNavigationLink();
+    }, { passive: true });
 
-        function updateOrderSection(visible) {
-            elements.orderSection.style.display = visible ? 'block' : 'none';
-            if (!visible) {
-                elements.orderFeedback.textContent = '';
-                elements.fileError.textContent = '';
-                elements.paymentError.textContent = '';
-                orderState.payment = null;
-                orderState.file = null;
-                orderState.validFile = false;
-            }
-            updateOrderButtonState();
-        }
-
-        function handleDefaultOrder() {
-            alert('Please contact me on Facebook Messenger together with your uploaded design.');
-            elements.orderFeedback.textContent = 'Thanks for choosing a preset size. Please message us with your design and we will confirm your order details.';
-            elements.orderFeedback.className = 'order-feedback success';
-        }
-
-        function handleReviewOrder() {
-            if (!customData || !orderState.hasPrice) {
-                alert('Please calculate your custom price first, then review your order.');
-                return;
-            }
-            elements.orderSection.style.display = 'block';
-            elements.orderSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            elements.orderFeedback.textContent = 'Review your custom order details, then click Place Order to complete.';
-            elements.orderFeedback.className = 'order-feedback';
-        }
-
-        function updateOrderButtonState() {
-            const canOrder = orderState.hasPrice && orderState.validFile && !!orderState.payment;
-            elements.orderBtn.disabled = !canOrder;
-            elements.orderSummaryText.textContent = canOrder
-                ? `Ready to order. Selected payment: ${orderState.payment.replace('-', ' ').toUpperCase()}.`
-                : 'Upload your PNG and select a payment method to enable checkout.';
-        }
-
-        function updateOrderSummary(item) {
-            const sizeLabel = currentSize === 'custom'
-                ? `${elements.widthInput.value}×${elements.heightInput.value} inches`
-                : currentSize.toUpperCase();
-            const qtyLabel = item ? item.qty : '-';
-            const priceLabel = item ? `₱${item.price.toLocaleString()}` : '-';
-            const paymentLabel = orderState.payment ? orderState.payment.replace('-', ' ').toUpperCase() : '-';
-
-            document.getElementById('order-size').textContent = sizeLabel;
-            document.getElementById('order-qty').textContent = qtyLabel;
-            document.getElementById('order-price').textContent = priceLabel;
-            document.getElementById('order-payment').textContent = paymentLabel;
-        }
-
-        function submitOrder() {
-            if (!orderState.validFile) {
-                elements.fileError.textContent = 'Please upload a valid HD PNG file.';
-                return;
-            }
-            if (!orderState.payment) {
-                elements.paymentError.textContent = 'Please choose a payment method.';
-                return;
-            }
-            alert('Please contact me on Facebook Messenger together with your uploaded design.');
-            elements.orderFeedback.textContent = `Order submitted! We will contact you with instructions for ${orderState.payment.replace('-', ' ')} payment.`;
-            elements.orderFeedback.className = 'order-feedback success';
-            elements.orderBtn.disabled = true;
-        }
-
-        function switchSize(size, btn) {
-            currentSize = size;
-            expandedIndex = null;
-
-            // Update button states
-            elements.toggleBtns.forEach(b => {
-                b.classList.remove('active');
-                b.setAttribute('aria-selected', 'false');
-            });
-            btn.classList.add('active');
-            btn.setAttribute('aria-selected', 'true');
-
-            // Handle Custom Inputs
-            if (size === 'custom') {
-                elements.customFlexWrapper.style.display = 'flex';
-                elements.defaultOrderCta.style.display = 'none';
-                customData = null;
-                render();
-            } else {
-                elements.customFlexWrapper.style.display = 'none';
-                elements.defaultOrderCta.style.display = 'block';
-                render();
-            }
-
-            // Handle Slider Animation
-            if (size === '3x3') {
-                elements.toggleWrap.classList.add('slide-right');
-                elements.toggleWrap.classList.remove('slide-custom');
-            } else if (size === 'custom') {
-                elements.toggleWrap.classList.add('slide-custom');
-                elements.toggleWrap.classList.remove('slide-right');
-            } else {
-                elements.toggleWrap.classList.remove('slide-right');
-                elements.toggleWrap.classList.remove('slide-custom');
-            }
-        }
-
-        // Initialize the application
-        initEventListeners();
-        render();
-    </script>
+    elements.year.textContent = new Date().getFullYear();
+    updateStandardPacks();
+    updateQuote();
+    updateStickyNavigation();
+    updateActiveNavigationLink();
+  </script>
 </body>
 </html>
