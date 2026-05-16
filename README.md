@@ -1,1 +1,1 @@
-customized sticker only
+demo only website(customized sticker only)
